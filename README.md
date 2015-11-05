@@ -15,7 +15,7 @@ or the language specifier after them.
 ## Ruby Basics & Enumerables (meets Beauty and the Beast)
 
 
-### Question #1
+### Question 1
 
 Define a method called `offerRose`, which should take one argument named person.
 
@@ -29,7 +29,7 @@ Write your code here:
 # code here
 ```
 
-### Question #3
+### Question 2
 
 Assume the following hash:
 
@@ -52,7 +52,7 @@ Write your code here:
 # code here
 ```
 
-### Question #3
+### Question 3
 
 Assume you have an array of strings representing friend's names:
 
