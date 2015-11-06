@@ -37,7 +37,7 @@ Assume the following hash:
 town = {
   residents: ["Maurice", "Belle", "Gaston"],
   castle: {
-    num_rooms: 47
+    num_rooms: 47,
     residents: "Robby Benson",
     guests: []
   }
@@ -81,7 +81,7 @@ Write your code here:
 Describe what an ERD is, and why we create them for applications. Also give an
 example what the attributes and relationships might be for the following
 entities (no need to draw an ERD):
-
+<!-- Maybe clarify whether they're meant to give relationships between all four entities or... -->
 * Genie
 * Lamp
 * Person
@@ -106,11 +106,12 @@ Replace this with your answer
 ### Question 6
 
 **Assume:**
-1. Your database has the correct tables (genies and lamps)
-2. You have a  working connection to the database for ActiveRecord, and
-3. You have active record models defined of `Genie` and `Lamp`, and the
+1. Your database two working tables, `genies` and `lamps`.
+2. You have a working connection to the database for ActiveRecord.
+3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
-4. Lamps have one property `wishes_remaining`, and genies have one property, `name`.
+<!-- Do we want to specifiy what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
+4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
 Write code to do the following:
 1. Create a lamp with 3 wishes remaining and a genie named 'Genie'
@@ -131,25 +132,30 @@ Write your code here:
 ### Question 7
 
 The Chinese Emperor needs an application to help him manage his warriors.
+<!-- LOLZ. YES. -->
 
 Describe to him what a RESTful route is, and list what the seven RESTful routes
 would look like for such an application.
 
-Here's an example of one such route, you do the other six!
+Your description:
+```
+Replace this with your answer
+```
+Your routes:
+```
+The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Your answer:
-```
 Replace this with your answer
 ```
 
 ### Question 8
 
 Assume:
-* Warriors are an ActiveRecord model, and have a 'name' attribute.
-* You have a sinatra `app.rb` (or similar file), that defines the following
+* Warrior is an ActiveRecord model, with a 'name' attribute.
+* You have a Sinatra `app.rb` (or similar file), that defines the following
 route:
 
 ```ruby
@@ -161,8 +167,7 @@ end
 
 Write what an example ERB file (aka view) might look like to list all the warriors:
 
-Write your code here
+Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-
+<!-- code here -->
 ```
-(note, syntax highlighting doesn't work for ERB, so ignore the colors):
