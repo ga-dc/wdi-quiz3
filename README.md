@@ -65,8 +65,8 @@ Using `.each` AND string interpolation, produce output (using `puts`) like so:
 ```
 Belle is friends with Chip Potts
 Belle is friends with Cogsworth
-Belle is friends with Mrs. Potts
 Belle is friends with Lumière
+Belle is friends with Mrs. Potts
 ```
 
 Write your code here:
@@ -114,6 +114,7 @@ relationships between the two are set up in Active Record.
 4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
 Write code to do the following:
+
 1. Create a lamp with 3 wishes remaining and a genie named 'Genie'
 2. Create a relationship between 'Genie' and the lamp.
 3. Update the lamp so it only has one wish left.
