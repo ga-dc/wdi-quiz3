@@ -133,7 +133,19 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genie = Genie.create(name: "Genie")
+Lamp.crate(wishes_remaining: 3)
+
+"Lamp belongs to Genie"
+Genie.create(name: "Genie")
+Lamp.crate(wishes_remaining: 3, genie_id: 1)
+
+genie.lamp.update(wish: 1)
+
+Genie.create(name: "Jafar")
+Lamp.create(wishes_remaining: 3, genie_id: 2)
+
+genie.lamp.genie_id = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
