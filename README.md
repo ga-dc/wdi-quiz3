@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, " + person + "?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle = town[:residents][1]
+town[:residents].delete(belle)
+town[:castle][:guests].push(belle)
 ```
 
 ### Question 3
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,24 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an Entity Relationship Diagram. It is a way to model data (as entities), its attributes and any relationships that exist between different entities. We create them for applications to think conceptually about the problem the application is trying to solve and show how our data will interact with the program and with other data.
+
+Example:
+Genie
+Attributes: age, abilities, aliases...
+Relationships: {One-to-One: Lamp} {One-to-Many: Person}
+
+Lamp
+Attributes: color, shape/model...
+Relationships: {One-to-One: Genie}
+
+Person
+Attributes: age, abilities, aliases, address...
+Relationships: {One-to-Many: Genie} {Many-to-Many: Pet} (assuming a person may have more than one pet at a time...or in their lifetime. And also assuming more than one person can "own" a pet at a time.)
+
+Pet
+Attributes: age, abilities, type/species, favorite food...
+Relationships: {Many-to-Many: Person}
 ```
 
 ### Question 5
@@ -100,7 +125,11 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema describes the structure (column names, data type {string (text/varchar), integer, boolean}, any constraints) of a table in a database. It both instructs the database on what information to store and where, and informs the users/programmers what type of data they can expect in a table.
+
+We represent relationships between data in a database using foreign keys. For example, in the one-to-many examples of people and wishes, wishes would have a foreign key named person_id or similar. Then, queries could be run collecting all the wishes belonging to a certain person.
+
+SELECT * FROM wishes where person_id = 2;
 ```
 
 ### Question 6
@@ -125,7 +154,13 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genie = Genie.create(name: "Genie")
+lamp = Lamp.create(wishes_remaining: 3, genie: genie)
+lamp.update(wishes_remaining: 1)
+jafar = Genie.create(name: "Jafar")
+jafar_lamp = Lamp.create(wishes_remaining: 3, genie: jafar)
+lamp.update(wishes_remaining: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +175,31 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful routes are the ways a client can make HTTP requests (like GET, POST, DELETE, PUT...) to a server and interact with the database, performing basic CRUD actions in an application.
 ```
 Your routes:
 ```
-The ancestors have provided an example of one route; you do the other six!
+(index)
+GET '/warriors'
 
+(new warrior form page)
+GET '/warriors/new'
+
+(show one warrior)
 GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+(submit new warrior form / create new warrior in db)
+POST '/warriors'
+
+(edit warrior form page)
+GET '/warriors/:id/edit'
+
+(submit edit warrior form / edit warrior in db)
+PUT '/warriors/:id'
+
+(destroy warrior from db)
+DELETE '/warriors/:id'
+
 ```
 
 ### Question 8
@@ -170,5 +220,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>Warriors</h1>
+
+<ul>
+  <% @warriors.each do |warrior| %>
+  <li><%= warrior.name %></li>
+  <% end %>
+</ul>
 ```
