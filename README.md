@@ -195,5 +195,9 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+<% @warriors.each do |warrior| %>
+  <li><%= warrior.name %></li>
+<% end %>
+</ul>
 ```
