@@ -160,7 +160,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+Restful routes are requests made to the server. They are composed of a method and an action.
 ```
 Your routes:
 ```
@@ -169,7 +169,12 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET "/warriors"       index
+GET "/warriors/new"   new
+POST "/warriors"       create
+GET "/warriors/:id/edit" edit
+PUT "/warrior/:id"   update
+DELETE "/warrior/:id"  destroy
 ```
 
 ### Question 8
