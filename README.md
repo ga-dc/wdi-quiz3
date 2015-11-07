@@ -95,7 +95,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD stands for entity relationship diagram. They are used as a tool in the planning stages of a project to flesh out business logic and show relationships between first class citizens at a high level. When all parties are involved in creating these diagrams it helps shape the scope of the project and how the system should work before any solutions or development has occurred.
+
+A Genie can have one-to-many lamps but a belongs to one Genie. A person can zero to many pets but a pet belongs to one person.
 ```
 
 ### Question 5
