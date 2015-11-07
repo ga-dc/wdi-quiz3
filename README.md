@@ -27,7 +27,7 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 def offerRose person
-  puts "Would you take this rose and help out an old beggar, " + person + "?"
+  puts "Would you take this rose and help out an old beggar, #{person}?"
 end
 
 offerRose("young prince")
@@ -55,7 +55,7 @@ Write your code here:
 ```ruby
 belle = town[:residents][1]
 town[:residents].delete(belle)
-town[:castle][:guests].push(belle)
+town[:castle][:guests] << belle
 ```
 
 ### Question 3
