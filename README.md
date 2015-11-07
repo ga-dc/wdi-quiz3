@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
+
 ```
 
 ### Question 2
@@ -49,12 +54,14 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+
+ town[:castle][:guests] << town[:residents].delete_at(1)
+
 ```
 
 ### Question 3
 
-Assume you have an array of strings representing friend's names:
+Assume you have an array of strings representing friend names:
 
 ```ruby
 friends = ["Chip Potts", "Cogsworth", "Lumière", "Mrs. Potts"]
@@ -71,7 +78,11 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
+
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -81,7 +92,9 @@ Write your code here:
 Describe what an ERD is, and why we create them for applications. Also give an
 example what the attributes and relationships might be for the following
 entities (no need to draw an ERD):
-<!-- Maybe clarify whether they're meant to give relationships between all four entities or... -->
+<!-- Maybe clarify whether they're meant to give relationships between all four entities or...
+I see this comment and taking it to mean we DON'T need to assign relationships
+between all 4-->
 * Genie
 * Lamp
 * Person
@@ -89,7 +102,23 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity-relationship diagram, and we use them to map out the structure
+of an application. Mapping it out with clear relationships helps structure the
+database and plan out functionality.
+
+Genie and Lamp would have a one-to-one relationship because a genie can be tied
+to only one lamp, and a lamp can hold only one genie (as far as I know). Genie's
+attributes might include name (? or are they all just named Genie??), gender,
+skin color, type of wrist manacles, and foreign keys for Lamp ID and Master ID.
+Lamp's attributes might include metal type, number of handles, lid shape, and
+foreign key for Genie ID.
+
+Person and Pet would have a many-to-many relationship because a person could have
+many pets, and a pet could belong to many people (each member of a family, for
+example). A person's attributes might include name, gender, age, marital status,
+job, hobbies, and birthday (depending on the purpose of the app, this list could
+go on or be much shorter). A pet's attributes might include name, gender, age,
+breed, temperament and size.
 ```
 
 ### Question 5
@@ -100,7 +129,11 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema lays out the structure of the tables within the database, and sets the
+data type for each column (name would be a VARCHAR type, age would be INTEGER).
+A one-to-many relationship is represented by adding the foreign key of the "one"
+as an attribute on the "many". So, each wish would have a "person_id" attribute
+that would refer back to the person.
 ```
 
 ### Question 6
@@ -125,7 +158,17 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+
+lamp = Lamp.create(wishes_remaining: 3)
+lamp.genies.create(name: 'Genie')
+lamp[:wishes_remaining] = 1
+lamp.save
+
+new_lamp = Lamp.create(wishes_remaining: 3)
+new_lamp.genies.create(name: 'Jafar')
+
+Genie.find_by(name: 'Genie').update(lamp_id: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,14 +183,46 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route tells the controller how to handle the Emperor's demands, and
+what information it needs to retrieve from the database to render on the page.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
+GET '/warriors'
+  * This is the index route, which displays all warriors
+
+GET '/warriors/new'
+  * This is the new route, which displays a form where you can enter information
+  about a new warrior.
+
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+
+GET '/warriors/:id/edit'
+  * This is the edit route, which finds a warrior by ID and displays a page that
+  includes a delete button, should your warrior fall in battle, or just displeases you,
+  and a form where you can update a specific warrior's information.
+
+POST '/warriors'
+  * This is the create route, assuming the form on the '/warriors/new' had an
+  action of '/warriors' and a method 'post'. It should include a method creating
+  a new warrior using params from the form, and redirect to '/warriors' so
+  you can see the new warrior listed.
+
+PUT '/warriors'
+  * This is the update route, assuming the form on the '/warriors/:id/edit' page
+  had an input element of type hidden, method 'put', action '/warriors'. It should
+  include a method updating a warrior using params from the form, and redirect
+  to '/warriors'.
+
+DELETE '/warriors'
+  * This is the destroy route, assuming the delete button on the edit page had an
+  input type of hidden, method 'delete', action '/warriors'. It should include a
+  method to delete the warrior referenced in the params[:id] and redirect to
+  '/warriors'.
+
 
 Replace this with your answer
 ```
@@ -170,5 +245,12 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+
+<h2>Warriors</h2>
+<ul>
+<% @warriors.each do |warrior| %>
+  <li><%= warrior[:name] %></li> 
+<% end %>
+</ul>
+
 ```
