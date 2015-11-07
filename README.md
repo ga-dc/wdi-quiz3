@@ -108,7 +108,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema is what we use to define how we want our database structure and our data/models. A one to many relationship can be represented in a schema by wishes containing a foreign key that belongs to one person.
 ```
 
 ### Question 6
