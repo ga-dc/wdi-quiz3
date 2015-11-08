@@ -134,14 +134,17 @@ DG: this one confused my a bit, please feel free to offer feedback on it if I'm 
 
 Write your code here:
 ```ruby
-@lamp = Lamp.new(wishes_remaining: 3)
-@genie = Genie.new(name: "Genie")
-@genie.lamp_id = @lamp.id
-@lamp.wishes_remaining = 1
-@jafar = Genie.new(name: "Jafar")
-@new_lamp = Lamp.new(wishes_remaining: 3)
-@jafar.lamp_id = @new_lamp.id
-@genie.lamp_id=""
+lamp = Lamp.new(wishes_remaining: 3)
+genie = Genie.new(name: "Genie")
+genie.update(lamp_id: lamp.id )
+lamp.update(wishes_remaing: 1)
+
+jafar = Genie.new(name: "Jafar")
+new_lamp = Lamp.new(wishes_remaining: 3)
+
+jafar.update(lamp_id = new_lamp.id)
+
+genie.lamp_id=""
 
 ```
 
