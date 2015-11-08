@@ -54,7 +54,7 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 town.residents.delete("Belle")
-town.castle.guests.new("Belle")
+town.castle.guests.push("Belle")
 ```
 
 ### Question 3
@@ -76,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friends}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -94,7 +96,13 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram.  It describes the relationships between tables, which contain data, in a database.  Relationships can be one:one or one:many.
+
+I'm assuming genie and lamp are one db, and pet/person is a separate question.
+
+A genie has one lamp, so one:one relationship (would set this up so genie_id is lamp's foreign key, used to relate genie to lamp).
+
+A person can have more than one pet, so person:pet is one:many relationship (person_id is foreign key, used to relate person to pet.)
 ```
 
 ### Question 5
