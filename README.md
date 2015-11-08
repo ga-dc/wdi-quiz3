@@ -113,7 +113,31 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema is the file used to create table or tables in a database.
+Simple tables for human/wishes would be
+
+CREATE TABLE wishes (
+  id SERIAL PRIMARY KEY,
+  wish VARCHAR (255),
+  people_id INTEGER
+  );
+
+CREATE TABLE humans (
+  id SERIAL PRIMARY KEY,  
+  name VARCHAR (255),
+  );
+
+One human can have many wishes.  Relationship set up in model files:
+
+filename: wish.rb
+class Wish < ActiveRecord::Base
+  belongs_to :humans
+end
+
+filename: human.rb
+class Human < ActiveRecord::Base
+  has_many :wishes
+end
 ```
 
 ### Question 6
