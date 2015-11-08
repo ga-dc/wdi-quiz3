@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents].reject! {|i| i=="Belle"}
+town[:castle][:guests] << "Belle"
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,13 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram. We use an ERD in order to visualize the organization of data within a database.
+
+Genie attribute: name
+Pet attribute: name, species, age
+One-to-one: Genie to lamp
+Many-to-many: person to pet
+
 ```
 
 ### Question 5
@@ -100,7 +113,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema describes a data table within a database. Specifically, the schema should include column names, data type for each column, and constraints for each column.
+
+In a SQL database we can use a foreign key to create a one-to-many relationship. For example, if a person can have many wishes and each wish is unique to one person, then the wish would be attached to a foreign key that is the id of a specific person.
 ```
 
 ### Question 6
@@ -125,7 +140,12 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genie = Genie.create(name: "Genie")
+lamp = genie.lamp.create(wishes_remaining: 3)
+lamp.update(wishes_remaining: 1)
+jafar = Genie.create(name: "Jafar")
+lamp_jafar = jafar.lamp.create(wishes_remaining: 3)
+lamp = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +160,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful routes are seven commonly used routes, where a route is the combination of a method and a path.
 ```
 Your routes:
 ```
@@ -149,7 +169,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  *This is the index route, which lists all of the warriors.
+
+GET '/warriors/new'
+  *This is the new route, which leads to the form for creating a new warrior.
+
+POST '/warriors'
+  *This is the create route, which adds a new warrior to the database.
+
+GET 'warriors/:id/edit'
+  *This is the edit route, which leads to the form for changing the details of a particular warrior.
+
+PUT '/warriors/:id'
+  *This is the update route, which changes the details for a particular warrior.
+
+DELETE '/warrior/:id'
+  *This is the destroy route, which deletes a particular warrior from the database.
 ```
 
 ### Question 8
@@ -170,5 +206,8 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<% @warriors.each do |warrior| %>
+<li><%= warrior %></li>
+<% end %>
+
 ```
