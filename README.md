@@ -156,7 +156,7 @@ would look like for such an application.
 
 Your description:
 ```
-RESTful is a description
+RESTful is a use of convention over configuration that allows us to communicate the intention of the route through html verb. It makes our code readable and modular. It also is a separation of concerns mechanic.
 ```
 Your routes:
 ```
