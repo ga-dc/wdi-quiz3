@@ -26,7 +26,9 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose (person)
+  puts "Would you take this rose and help out an old begger, #{person}?"
+end
 ```
 
 ### Question 2
@@ -49,7 +51,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle=town[:residents].delete("Belle");
+town[:castle][:guests]<<belle;
 ```
 
 ### Question 3
@@ -71,7 +74,10 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+puts "Belle is friends with #{friend}"
+
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +95,11 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is entity relationships diagram that is data modelling technique.
+We need thse because we need to structure entity framework and data modelling.
+Entities for the given example would be Person Lamp, and Pet.
+Person would have Genie as an attribute. Person and Lamp, Pet has one to many relationship.
+One person can have many pets and lamps.
 ```
 
 ### Question 5
@@ -100,7 +110,8 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema is a diagram where explains relationship between data entities.
+Each people can have many wishes.
 ```
 
 ### Question 6
@@ -125,7 +136,20 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+# lamp=Lamp.create(wishes_remaining: 3);
+@ginie=Genie.create(name: "Genie");
+@lamp=@genie.lamps.create(wishes_remaining: 3);
+@lamp.update(wishes_remaining: 1);
+@jafar=Genie.create(name: "Jafar");
+@jafar.lamps.update(wishes_remaining: nil);
+# class Genie <ActiveRecord::Base
+#   has_many :lamps
+# end
+# class Lamp <ActiveRecord::Base
+#   belongs_to :Genie
+# end
+
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +164,8 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful route is ways to coordinate communication between web browsers, web pages in the server.
+
 ```
 Your routes:
 ```
@@ -149,7 +174,29 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+
+  1. To display list of soliders:
+  GET-/soldiers-soldiers#index
+
+  2. to return an HTML form to create a new soldier:
+  GET-/soldiers/new-soldiers#new
+
+  3. To create a new soldier:
+  POST-/soldiers-soldiers#create
+
+  4. To display a specific soldier:
+  GET-/soldiers/:id-soldiers#show
+
+  5. To return an HTML form for editing a soldier:
+  GET-/soldiers/:id/edit-soldiers#editing
+
+  6. To return an HTML form for editting a soldier:
+  PATCH-/soldiers/:id-soldiers#update
+
+  7. To delete a specific soldier:
+  DELETE-/soldiers/:id-soldiers#destroy
+
+
 ```
 
 ### Question 8
@@ -170,5 +217,14 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<% @warriors.each do |warrior| <%>
+    <li><%=warrior.name%></li>
+<% end %>
+</body>
+</html>
 ```
