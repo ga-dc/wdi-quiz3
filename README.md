@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offer_rose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offer_rose "young prince"
 ```
 
 ### Question 2
@@ -49,7 +53,7 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:castle][:guests] << town[:residents].slice!(1)
 ```
 
 ### Question 3
@@ -71,7 +75,7 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each {|friend| puts "Belle is friends with #{friend}"}
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +93,13 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram.  These diagrams are used to show the relationship between (and contents of) entities, which are generally classes.  These diagrams map out the relationships that will exist between two or more related classes and so help to demonstrate which methods will be required in order to represent the diagram inside code.
+
+An example using genie, lamp, person, and pet might be:
+-a lamp contains one genie, and each genie lives inside a single lamp
+-a person owns many pets, but each pet has only one person
+-a person may own many lamps, but each lamp has only one owner
+-some lamps, people, pets, and genies have certain attributes which should be described inside each entity/class
 ```
 
 ### Question 5
@@ -100,7 +110,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a sql template.  Its components are a name and a list of attributes, including an id which is usually automatically assigned.  A sql schema can be thought of as similar to a class in ruby.
+
+One to many relationships are represented in sql by sharing ids.  For example an apartment has many tenants, so inside the tenant schema we would include a key:value pair to represent the id of the apartment in which that tenant is staying.  The value of this key would correspond with the id of an apartment.
 ```
 
 ### Question 6
@@ -125,7 +137,13 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+# assuming the lamp and genie templates are automatically assigning ids
+lamp = Lamp.new(wishes_remaining: 3)
+genie = Genie.new(name: "Genie", lamp_id: lamp.id)
+lamp.update(wishes_remaining: 1)
+new_lamp = Lamp.new(wishes_remaining: 3)
+jafar = Genie.new(name: "Jafar", lamp_id: new_lamp.id)
+lamp.destroy
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +158,36 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful routes are one possible way to order the pages of a web app.  The routes will bring the user from one page to the next based on where he clicks or what he inputs.  
+
+RESTful routes must refer to one of seven actions in order to simplify and organize your web app.  These actions are index, new, create, show, edit, update, and destroy.
+
+Index would list all warriors.  New would show a form to create a new warrior.  Show would show the specific attributes of a warrior.  Edit would bring a user to a form to edit a warrior.  Update would trigger the actual editing.  And destroy would delete a warrior.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
+GET '/warriors/new'
+  * This is the new route, which will show a creation form.
+
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * This is the index route, which displays all the warriors.
+
+GET '/warriors/:id/edit'
+  * This is the edit route, which will show an editing form.
+
+DELETE '/warriors/:id/'
+  * This is the delete route, which will show a delete a specific.
+
+PUT '/warriors/:id/edit'
+  * This is the update route, which will update a specific warrior.
+
+POST '/warriors/:id/edit'
+  * This is the create route, which will create a new warrior.
 ```
 
 ### Question 8
@@ -170,5 +208,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>All Warriors</h1>
+
+<ul>
+<%@warriors.each do |warrior|%>
+  <li><p><%=warrior.name%></p></li>
+<%end%>
+</ul>
 ```
