@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def take_rose(person)
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+take_rose('young prince')
+
 ```
 
 ### Question 2
@@ -49,7 +54,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+residents.delete(1)
+guests << "Belle"
+
 ```
 
 ### Question 3
@@ -71,7 +78,12 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends = ["Chip Potts", "Cogsworth", "Lumière", "Mrs. Potts"]
+
+friends.each do |friend|
+    puts "Belle is friends with #{friend}"
+end
+
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +101,16 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram, which provides a visual representation of relationships and associations between entities that will all be assigned their own table, but contained within the same database. Within each entity in the diagram, you can also document what attributes an entity may have (which will eventually become columns in the database table.) In the example above, you could use the relationship descriptors "has many" and "belongs to" to chart some of these relationships -
+*Person has_many -> <- belongs_to Pets
+Attributes:
+  -name                            -name
+  -age                             -age
+  -profession                      -breed
+*Lamp belongs_to -> Person
+*Genie belongs_to -> <-belongs_to Lamp
+Attributes:
+ - name                          -color
 ```
 
 ### Question 5
@@ -100,7 +121,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema provides a model for what information will be included in a new database, and how it will be organized. Within a schema file, you create a table for each entity, define which attributes that entity will have, and describe what data type will be provided for each attribute. Models within the schema can also show associations between tables. For example, each instance in my Apartment table "has_many" tenants, whereas each instance in my Tenant table "belongs_to" an apartment.
 ```
 
 ### Question 6
@@ -125,7 +146,14 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genie = Genie.create(name: "Genie")
+genie_lamp = Lamp.create(wishes_remaining: 3)
+genie_lamp.wishes_remaining = 3
+genie_lamp.save
+jafar = Genie.create(name: "Jafar")
+jafar_lamp = Lamp.create(wishes_remaining: 3)
+genie_lamp.wishes_remaining = nil
+genie_lamp.save
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +168,27 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
-```
-Your routes:
-```
+A RESTful route allows you to link and routes and methods that allow your web application to perform actions like get, put, post, delete, and patch on an HTTP url (as specified in the controller file).
+
 The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors/'
+  * This is the index route, which shows the full roster of warriors.
+
+GET 'warriors/new'  
+POST '/warriors/new'
+  * These two routes will allow the Emperor to access a form to create a new warrior, and then the Post method will allow the Emperor to enter new warriors into the database and redirect him to the full index.
+
+PUT 'warriors/:id'
+  * This is an update route that will update the warriors information (based on input parameters provided) and then reroute to the warriors/:id view to show the updated information
+
+DELETE 'warriors/:id'
+  * This is a delete/destroy route which will allow the Emperor to retire or decommission a warrior.
+
+
 ```
 
 ### Question 8
@@ -170,5 +209,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>Warriors</h1>
+<ul>
+  <% @warriors.each do |warrior| %>
+  <li><%= warrior.name %></li>
+  <% end %>
+</ul>
 ```
