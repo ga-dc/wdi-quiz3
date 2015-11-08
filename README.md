@@ -27,6 +27,11 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose (person)
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -50,6 +55,9 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
+town[:residents] = ["Maurice","Gaston"]
+town[:castle][:guests] = ["Belle"]
+
 ```
 
 ### Question 3
@@ -72,6 +80,9 @@ Belle is friends with Mrs. Potts
 Write your code here:
 ```ruby
 # code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +100,8 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a visual tool used to describe relationships between data entities
+A genie and a lamp have a 1-1 relationship.  So, a genie has one lamp, and a lamp has one genie. A person could (if lucky!) have many lamps, and therefore many genies. A person could also have many pets, but a pet typically only has 1 "person" (owner). Therefore the relationship of person and pet would be 1 -  many.
 ```
 
 ### Question 5
@@ -100,7 +112,8 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema represents the structure of a given database.  In other words, it builds each table within the database, specifies the columns for each table, and the data types for each column.
+if you have a "people" table and a "wishes" table, the one to many relationship is shown on the wishes table, which would have a "person_id" foreign key. That would represent which single person owns each wish.
 ```
 
 ### Question 6
@@ -126,6 +139,28 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+genie = {
+  name: "Genie"
+}
+
+jafar {
+  name: "Jafar"
+}
+
+lamp = {
+  wishes_remaining: 3,
+  genie: [genie[:name]]
+}
+
+lamp[:wishes_remaining] = 1
+
+jafarLamp = {
+  wishes_remaining: 3,
+  genie: [jafar[:name]]
+}
+
+lamp = nil
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +175,13 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+GET - shows an instance
+show - shows an instance
+new - creates a new instance (needs to be saved)
+create - creates a new instance that saves automatically
+edit - edits instance (needs to be saved)
+update - edits an instance that saves automatically
+destroy - deletes and instance
 ```
 Your routes:
 ```
@@ -148,8 +189,13 @@ The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
-
-Replace this with your answer
+    get    '/warriors' => 'warriors#index'
+    get    '/warriors/new' => 'warriors#new'
+    get    '/warriors/:id' => 'warriors#show'
+    post   '/warriors' => 'warriors#create'
+    get    '/warriors/:id/edit' => 'warriors#edit'
+    put    '/warriors/:id' => 'warriors#update'
+    delete '/warriors/:id' => 'warriors#destroy'
 ```
 
 ### Question 8
@@ -170,5 +216,15 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h2>Warriors</h2>
+
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>">
+        <%= warrior.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
