@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person} ?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,12 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+
+ town[:residents].remove("Belle")
+ town[:castle][:guests].add
+
+
+
 ```
 
 ### Question 3
@@ -71,7 +80,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +100,20 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD stands for Entity Relationship Diagram. ERD's exist to show relationships between entities and attributes within a system or application. We use them as a tool to understand how our data is interacting within the program.
+
+Disclaimer: I've never seen Aladdin so I am not  sure about the relationships between the four examples, but here's a shot. And i have no idea how "pets" fits in?
+
+Genie [attributes: nationality, age, gender, etc.]
+  [relationships: lamp - one to one, person - one to many]
+Lamp [attributes: color, size, brand]
+  [relationships: genies: one to one, person: one to one ]
+Person [attributes: age, gender, nationality, etc.]
+  [relationships: genie - one to one, lamp: many to one]
+Pets [attributes: breed, age, name]
+  [relationships: genies - one to one, person: one to one]
+
+
 ```
 
 ### Question 5
@@ -100,13 +124,15 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+
+
+
 ```
 
 ### Question 6
 
 **Assume:**
-1. Your database two working tables, `genies` and `lamps`.
+1. Your database *has* two working tables, `genies` and `lamps`.
 2. You have a working connection to the database for ActiveRecord.
 3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
