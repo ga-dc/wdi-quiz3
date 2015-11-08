@@ -138,11 +138,11 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # assuming the lamp and genie templates are automatically assigning ids
-genie = Genie.new(name: "Genie")
-lamp = Lamp.new(wishes_remaining: 3, genie: genie.id)
+genie = Genie.create(name: "Genie")
+lamp = Lamp.create(wishes_remaining: 3, genie: genie.id)
 lamp.update(wishes_remaining: 1)
-jafar = Genie.new(name: "Jafar")
-new_lamp = Lamp.new(wishes_remaining: 3, genie: jafar.id)
+jafar = Genie.create(name: "Jafar")
+new_lamp = Lamp.create(wishes_remaining: 3, genie: jafar.id)
 lamp.destroy
 ```
 
