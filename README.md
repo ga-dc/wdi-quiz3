@@ -153,7 +153,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route is a way for a browser to communicate some CRUD functionality to a server. A route consists of a method (which CRUD function to do and with what information) and a path (where on the server the method needs to work)
 ```
 Your routes:
 ```
@@ -162,7 +162,21 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * Get information about all the warriors
+
+POST '/warriors'
+  * Create a new warrior
+
+PUT '/warriors/:id'
+  * Update all information about a warrior
+
+PATCH '/warriors/:id'
+  * Update a piece of information about a warrior
+
+DELETE '/warriors/:id'
+  * Delete a warrior from the application
+
 ```
 
 ### Question 8
@@ -183,5 +197,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+<% @warriors.each do |warrior| %>
+  <li><%= warrior.name %></li>
+<% end  %>
+</ul>
+
 ```
