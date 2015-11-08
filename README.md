@@ -26,7 +26,13 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+
+  def offRose(person)
+      puts "Would you take this rose and help out an old begger #{person}"
+  end
+
+  offRose ('young prince')
+
 ```
 
 ### Question 2
@@ -35,8 +41,8 @@ Assume the following hash:
 
 ```ruby
 town = {
-  residents: ["Maurice", "Belle", "Gaston"],
-  castle: {
+    residents: ["Maurice", "Belle", "Gaston"],
+    castle: {
     num_rooms: 47,
     residents: "Robby Benson",
     guests: []
@@ -49,7 +55,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+
+guest << residents[1]
+
 ```
 
 ### Question 3
@@ -71,7 +79,11 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+
+  friends.each do |friend|
+    puts "Belle is friends with #{friend}"
+  end
+
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +101,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+  ERD = entity relationship diagram.  
+  There are relationships between entities like one to one, one to many, many to many.
+
 ```
 
 ### Question 5
@@ -100,7 +114,10 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a database structure created to hold data.
+
+One person can have many wishes
+
 ```
 
 ### Question 6
@@ -125,7 +142,15 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+lamp =
+{
+  wishes_remaining: ["wish1", "wish2", "wish3"]
+  genie: ["genie"]
+}
+lamp.genie.slice[1,2]
+lamp[:wishes_remaining]="jafar"
+
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +165,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+Dear Warrior your RESTful journey lies between the http requests from applications.
 ```
 Your routes:
 ```
@@ -149,7 +174,15 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+POST '/warrior/:honor'
+  * this creates the warriors honor on the warrior page
+
+  PUT '/warrior/:level'
+  * this updates the warriors level based on his improved fighting skills
+
+  DELETE '/warrior/:honor'
+  * this deletes the warriors honor when he betrays the code of the warrior
+
 ```
 
 ### Question 8
@@ -170,5 +203,14 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+<% @warriors.each do |warrior| %>
+  <li>
+    <a href="/warriors/<%= warrior.id %>">
+      <%= warrior.name %>
+    </a>
+  </li>
+<% end %>
+</ul>
+
 ```
