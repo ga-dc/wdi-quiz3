@@ -75,7 +75,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -93,7 +95,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an Entity Relationship Diagram, and they are meant to illustrate the data schema of an application. Each entity has attributes which link them to other entities. Entity relationships can be one-to-one, one-to-many, many-to-one or many-to-many. For the entities above, a lamp might have one genie, and a lamp might belong to many people.
 ```
 
 ### Question 5
@@ -104,7 +106,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A one-to-many relationship is usually made in a SQL database using foreign key attributes to link tables. For instance, if we had a table of people and a table of wishes, the wishes table might have a "person_id" attribute that links each wish to the person making it.
 ```
 
 ### Question 6
@@ -129,7 +131,14 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+lamp = Lamp.create(wishes_remaining:3)
+genie = Genie.create(name:"Genie")
+lamp.genie = genie
+lamp.update(wishes_remaining:1)
+jafar = Genie.create(name:"Jafar")
+newLamp = Lamp.create(wishes_remaining:3)
+newLamp.genie = jafar
+lamp = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
