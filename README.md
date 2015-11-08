@@ -53,7 +53,7 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-town[:castle][:guests] << town[:residents].slice!(1)
+town[:castle][:guests] << town[:residents][1]
 ```
 
 ### Question 3
@@ -122,10 +122,10 @@ One to many relationships are represented in sql by sharing ids.  For example an
 2. You have a working connection to the database for ActiveRecord.
 3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
+Write code to do the following:
 <!-- Do we want to specifiy what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
 4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
-Write code to do the following:
 
 1. Create a lamp with 3 wishes remaining and a genie named 'Genie'
 2. Create a relationship between 'Genie' and the lamp.
@@ -138,11 +138,11 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # assuming the lamp and genie templates are automatically assigning ids
-lamp = Lamp.new(wishes_remaining: 3)
-genie = Genie.new(name: "Genie", lamp_id: lamp.id)
+genie = Genie.new(name: "Genie")
+lamp = Lamp.new(wishes_remaining: 3, genie: genie.id)
 lamp.update(wishes_remaining: 1)
-new_lamp = Lamp.new(wishes_remaining: 3)
-jafar = Genie.new(name: "Jafar", lamp_id: new_lamp.id)
+jafar = Genie.new(name: "Jafar")
+new_lamp = Lamp.new(wishes_remaining: 3, genie: jafar.id)
 lamp.destroy
 ```
 
