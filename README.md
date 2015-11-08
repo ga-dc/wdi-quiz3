@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+  puts "Would you take this rose and help out an old beggar, " + person + "?";
+end
+
+offerRose("young prince");
 ```
 
 ### Question 2
@@ -49,7 +53,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle = town[:residents][1]
+town[:residents].delete_at(1)
+town[:castle][:guests].push(belle)
 ```
 
 ### Question 3
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |name|
+  puts "Belle is friends with " + name
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,18 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a visual way of showing how separate entities of data in a database relate to each other. This is important so you can properly structure the database.
+attributes:
+* Genie (gender, color, accent)
+* Lamp (color, material)
+* Person (gender, age, height)
+* Pet (species, color, size)
+
+relationships:
+* Genie - lamp (one-to-one), person (one-to-many)
+* Lamp - genie (one-to-one), person (one-to-many)
+* Person - lamp (many-to-one; potentially multiple people get wishes? ), pet (many-to-many), genie (many-to-one)
+* Pet - person (many-to-many)
 ```
 
 ### Question 5
@@ -100,7 +119,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema defines the data types and categories in a data table. In a schema the attributes of People would get defined. For example columns could be defined for name, gender, and age as well the data types that would go along with these. A one-to-many relationship would be represented if wishes had a category called person_id. Multiple wishes could have the same person_id, but they could never be associated with more than one.
 ```
 
 ### Question 6
@@ -125,7 +144,14 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+Lamp.create(wishes_remaining: 3)
+Genie.create(name: "Genie")
+Lamp.last.update(genie_id: 1)
+Lamp.last.update(wishes_remaining: 1)
+Genie.create(name: "Jafar")
+Lamp.create(wishes_remaining: 3)
+Lamp.last.update(genie_id: 2)
+Lamp.first.update(wishes_remaining: "nil")
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +166,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route is a request to a server that allows you to create, read, update, and delete data.
 ```
 Your routes:
 ```
@@ -149,7 +175,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors/new'
+  * This is also a show route and it is required so you can see the form that allows you to enter in a new warrior's data.
+
+POST '/warriors'
+  * This actually creates the new data for the warrior.
+
+Get '/warriors/:id/edit'
+  * This show route takes you to the form that will allow you to edit data for a specific warrior
+
+PUT '/warriors/:id'
+  * This will update the specific warrior's data.
+
+DELETE '/warriors/:id'
+  * Allows you to delete a warrior
+
+GET '/warriors'
+  * Show route that provides a location to see all the warriors
 ```
 
 ### Question 8
@@ -170,5 +212,7 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<% warriors.each |warrior| do  %>
+<%= puts warrior.name %>
+<%end %>
 ```
