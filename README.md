@@ -25,8 +25,11 @@ an old beggar, X?", where X is the person passed into the method.
 Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
-```ruby
-# code here
+```
+def offerRose(X)
+  "Would you take this rose and help out an old beggar, " + X + "?"
+end
+puts(offerRose "young prince")
 ```
 
 ### Question 2
@@ -48,8 +51,9 @@ Using Ruby, remove Belle from the town residents, and
 add her to the list of guests in the castle.
 
 Write your code here:
-```ruby
-# code here
+```
+residents.delete("Belle")
+castle[:residents] = "Belle"
 ```
 
 ### Question 3
@@ -70,8 +74,10 @@ Belle is friends with Mrs. Potts
 ```
 
 Write your code here:
-```ruby
-# code here
+```
+friends.each do |name|
+puts "Belle is friends with #{name}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +95,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a model that demonstrates how different objects and classes and features relate to each other in a program. There is one genie to one lamp. One lamp can have many people that rub it. One person may have many pets. One pet has one person as an owner.
 ```
 
 ### Question 5
@@ -100,7 +106,18 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+The schema is an Active Record file that defines the key value pairs in a database.
+
+create table people (
+  id SERIAL PRIMARY KEY,
+  name
+);
+
+create table wishes (
+  id SERIAL PRIMARY KEY,
+  people_id
+);
+
 ```
 
 ### Question 6
@@ -124,8 +141,13 @@ Write code to do the following:
 
 
 Write your code here:
-```ruby
-# code here
+```
+lamp1 = Lamp.new(3)
+lamp1.wishes_remaining = 1
+jafar = Genie.new("Jafar")
+jafar.lamp1
+lamp1.wishes_remaining = 3
+jafar.lamp1 = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +162,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful routes are routes that use 5 different methods for a browser to make requests to a server.
 ```
 Your routes:
 ```
@@ -149,7 +171,17 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+POST '/warriors'
+Creates a new warrior
+
+PUT '/warriors/1'
+Updates all of a warrior's information
+
+PATCH '/warriors/1'
+Updates new information in a warrior instead of all of it like with PUT
+
+DELETE '/warriors/1'
+Deletes this warrior
 ```
 
 ### Question 8
@@ -169,6 +201,16 @@ end
 Write what an example ERB file (aka view) might look like to list all the warriors:
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
-```html
-<!-- code here -->
+```
+<h2>Warriors</h2>
+
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>">
+        <%= warrior.title %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
