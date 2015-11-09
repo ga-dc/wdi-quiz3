@@ -133,16 +133,25 @@ relationships between the two are set up in Active Record.
 Write code to do the following:
 
 1. Create a lamp with 3 wishes remaining and a genie named 'Genie'
+
 2. Create a relationship between 'Genie' and the lamp.
+
 3. Update the lamp so it only has one wish left.
   * Oh no... Jafar has Aladdin! Thankfully he's wished to become a genie himself!
-4. Create a new Genie named 'Jafar' and put him in a new lamp with 3 wishes left.
-5. Free the good Genie by setting his lamp to `nil`
 
+4. Create a new Genie named 'Jafar' and put him in a new lamp with 3 wishes left.
+
+5. Free the good Genie by setting his lamp to `nil`
 
 Write your code here:
 ```ruby
-# code here
+lampy = Lamp.create(wishes_remaining: 3)
+lampy.genies.create(name: "Genie")
+lampy.wishes_remaining = 1
+lampy.save
+lampy2 = Lamp.create(wishes_remaing: 3)
+lampy2.genies.create(name: "Jafar")
+lampy = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -158,15 +167,31 @@ would look like for such an application.
 Your description:
 ```
 Replace this with your answer
+A RESTful (REpresentational State Transfer) route is a conventional means for a user to interact with a Server and the related databases/objects.
 ```
 Your routes:
 ```
-The ancestors have provided an example of one route; you do the other six!
-
 GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+  * This is the 'show' route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * This is the 'index' route, which displays a list of all warriors.
+
+GET '/warriors/new'
+  * This is the 'new' route, which creates a new warrior, via user interaction, through a form.
+
+POST '/warriors'
+  * This is the 'create' route, which takes the entered information and actually inserts a new row into the database, with the new warrior.
+
+GET '/warriors/:id/edit'
+  * This is the 'edit' route, which gets a particular row that already exists in the database, and allows the user to edit the information of that warrior.
+
+PUT '/warriors/:id'
+  * This is the 'update' route, which takes the edited information in the above form, and actually updates the row in the database (similar to the GET/POST used by the 'new' and 'create' routes above, except editing an existing warrior, not creating one from scratch).
+
+DESTROY '/warriors/:id'
+  * This is the 'destroy' route, which destroys a database warrior.
+
 ```
 
 ### Question 8
@@ -187,5 +212,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <%= warrior.name %>
+    </li>
+  <% end %>
+<ul>
 ```
