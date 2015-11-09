@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+# define offerRose method, which takes a name and puts a sentence
+def offerRose (person)
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+# call offerRose method
+offerRose("Young Prince")
 ```
 
 ### Question 2
@@ -42,6 +47,8 @@ town = {
     guests: []
   }
 }
+
+
 ```
 
 Using Ruby, remove Belle from the town residents, and
@@ -49,7 +56,10 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+# remove Belle from the town residents
+belle = town[:residents].slice!(town[:residents].index("Belle"))
+# add her to the list of guests in the castle.
+town[:castle][:guests].push(belle)
 ```
 
 ### Question 3
@@ -71,7 +81,11 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+# Using `.each` AND string interpolation,
+# produce output (using `puts`) based on "friends" array:
+friends.each do |friend|
+  puts "Belle is friends with #{friend}."
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +103,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD (Entity Relationship Diagram) is a visual representation of the way separate entities within a database relate. The ERD can map many important pieces of information, including -
+1) Which data relates to other data (for example above, the relationship lines will likely form between Genies, and Lamps, and probably Lamps, and Perons[people], BUT there will be no lines between Genies and Pets, because there is no relationship between the two entities)
+2) What type of relationship the connected entities have. One-to-many, in the case of one Genie/Lamp having many persons throughout their lifecycle, and each person belonging to only one Genie/Lamp. Or many-to-many, in the case of many persons (say in a family of five) having many pets, while also belonging to many pets (say the family has three dogs, four cats, and a rat) which have many owners.
 ```
 
 ### Question 5
@@ -100,7 +116,8 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema creates the structure of an SQL database. A schema can create, clear, and modify tables. Generally a schema is used to create the needed tables (in this case people and wishes). Additionally, the schema can determine what types of field values (also known as columns) should be included in a table. A one-to-man relationship in an SQL database allows a column in the 'many' table, to contain values which relate to the 'primary-key' of the 'one' table. In this case, that primary-key, since it is in a non-native table, is referred to as a foreign-key.
+For the people/wishes database, the wishes table would have a column that indicates a value related (through primary-keys on the people table) to a unique person. Through this, a whole variety of functionality can be built in. The link can be used to show how many, if any, wishes a person has made, and what those wishes are. It can be used to show which individual people made the same wish. It can also be used to indicate that a person has reached their maximum number of wishes.
 ```
 
 ### Question 6
@@ -110,7 +127,7 @@ Replace this with your answer
 2. You have a working connection to the database for ActiveRecord.
 3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
-<!-- Do we want to specifiy what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
+<!-- Do we want to specify what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
 4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
 Write code to do the following:
