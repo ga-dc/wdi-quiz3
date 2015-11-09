@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old begger, #{person}"
+end
+
+offerRose "young prince"
+
 ```
 
 ### Question 2
@@ -49,7 +54,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents].delete_at(1)
+town[:castle][:residents] = [town[:castle][:residents]]
+town[:castle][:residents].push("Belle")
 ```
 
 ### Question 3
@@ -71,7 +78,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +98,18 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram, and it depicts the relationships between different database entities. These relationships can be one-to-many, many-to-many, or one-to-one, dependng on whether one or both 'members' of a relationship can theoretically have more than one of the other 'member' in a relationship. This information helps us plan out the table structure of the databases we'll get data from, and keeps the data separate from the behavior that we'll program later on.
+
+A genie can only be in one lamp, and one lamp (presumably ...) can only house one genie, so their relationship is one-to-one. A pet can belong to multiple people, and a person can have multiple pets, so that's a many-to-many relationship. A person can technically, if they're very lucky, have multiple genies. Assuming a genie is only beholden to one person at a time, the person-to-genie relationship would be one-to-many. 
+
+Without any markings specifying the 'one' or 'many' ends, a diagram might look like this:
+
+Person
+|   \   Lamp
+|    \   /
+|     \ /
+Pet  Genie 
+
 ```
 
 ### Question 5
@@ -100,7 +120,18 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema converts an ERB into an actual database, and defines how data from one table can grab data from another one. In the models folder, you would need to include code like the following:
+
+class Person < ActiveRecord::Base
+  has_many :wishes
+end   
+
+class Wish < ActiveRecord::Base
+  has_one :person
+end
+
+Every Wish item would have to include an owner_id or wisher_id, which identifies the one person that it belongs to. If you save a particular person to a variable, e.g. Aladdin, you could then see a list of all his wishes with Aladdin.wishes.
+
 ```
 
 ### Question 6
@@ -125,7 +156,15 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genies_lamp = Lamp.create(wishes_remaining: 3)
+genie = Genie.create(name: 'Genie')
+genies_lamp.update(genie_id: genie.id)
+genie.update(wishes_remaining: 1)
+jafar = Genie.crate(name: 'Jafar')
+jafars_lamp = Lamp.create(wishes_remaining: 3)
+jafars_lamp.update(genie_id: jafar.id)
+genies_lamp.update(genie_id: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +179,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+REST stands for REpresentative State Transfer, and it standardizes communication between browsers and servers. It allows you perform the CRUD (create, read, update, destroy) actions on your data.
 ```
 Your routes:
 ```
@@ -149,7 +188,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * index of all warriors
+
+GET '/warriors/new'
+  * brings you to a form to create a new warrior
+
+POST '/warriors'
+  * takes the data from the form and creates a new warrior
+
+GET '/warriors/:id/edit'
+  * brings you to a form to edit an existing warrior
+
+PUT '/warriors/:id'
+  * takes the data from the form and updates that warrior's information
+
+DELETE '/warriors/:id'
+  * deletes a fallen warrior
 ```
 
 ### Question 8
@@ -170,5 +225,9 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<p>Here are all your warriors. Click on one for more information</p>
+
+<% @all_apt.each do |apt| %>
+  <p><a href="/warriors/<%= warrior.id %>"><%= warrior.name %></a></p>
+<% end %>
 ```
