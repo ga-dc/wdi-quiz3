@@ -27,6 +27,11 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -50,6 +55,7 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
+town[:castle][:guests] << town[:residents].delete("Belle")
 ```
 
 ### Question 3
@@ -72,6 +78,9 @@ Belle is friends with Mrs. Potts
 Write your code here:
 ```ruby
 # code here
+friends.each do |friend|
+  p "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,8 +98,11 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
-```
+ERD stands for Entity Relational Diagram.  It is a visual scheme that allows a designer to show the attributes of containing entities and the relationships between said entities.
+
+A person can have one-to-many lamps but can only have one genie (Lore dictates monogamy between a master and a single genie).  A lamp can only have a single (one-to-one) genie.  Pets can belong to many (one-to-many) persons.
+
+Pets and Genies -- and Pets and Lamps will/do not have a relationship as pets will not be able to mark lamps as their territories.
 
 ### Question 5
 
@@ -100,8 +112,17 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
-```
+schema.sql exists in the db folder of a typical MVC layout which describes the has_many or belongs_to relationships of the classes placed in models.
+
+class Person < ActiveRecord::Base
+  has_many :wishes # wishs?
+end
+
+class Wish < ActiveRecord::Base
+  belongs_to :person
+end
+
+
 
 ### Question 6
 
@@ -111,6 +132,15 @@ Replace this with your answer
 3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
 <!-- Do we want to specifiy what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
+
+class Genie < ActiveRecord::Base
+  belongs_to :lamp
+end
+class Lamp < ActiveRecord::Base
+  belongs_to :genie
+end
+
+
 4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
 Write code to do the following:
@@ -126,6 +156,13 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+lamp_one = Lamp.create(wishes_remaining: 3)
+genie_one = Genie.create(name: "Genie")
+lamp_one.update(genie_id: genie_one.id)
+lamp_one(wishes_remaining: 1)
+jafar = Genie.create(name: "Jafar")
+jafar.lamps.create(wishes_remaining: 3)
+genie_one.update(genie_id: nil)
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,8 +177,8 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
-```
+A restful route is a combination of an HTTP VERB (e.g. GET, POST, PUT, DELETE) and a URL path. It's a very clean and dry way of setting up a website's different URL endpoints and allows for efficient CRUDing - ways for us to create, read (or view), update, and delete resources.
+
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
@@ -151,6 +188,23 @@ GET '/warriors/:id'
 
 Replace this with your answer
 ```
+  DELETE '/warriors/:id'
+  * This is the delete route which finds a warrior by ID, and deletes him from the database.
+
+  GET '/warriors/:id/edit'
+  * This is the edit route which finds a warrior by ID and displays a form to update his attributes.
+
+  PUT '/warriors/:id'
+  * This is the route that updates a warrior after the updated form has been submitted.
+
+  GET '/warriors'
+  * This is the index route, which shows all the warriors.
+
+  GET'/warriors/new'
+  * This is the route to display a form that will allow us to create a new warrior.
+
+  POST '/warriors/'
+  * This is the route that gets submitted after a user fills out the form for a new warrior and hits submit.
 
 ### Question 8
 
@@ -171,4 +225,8 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
 <!-- code here -->
+<h1>Warriors</h1>
+<% @warriors.each do |warrior| %>
+  <h2><p><%= warrior.name %></p></h2>
+<% end %>
 ```
