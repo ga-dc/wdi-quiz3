@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle = town[:residents][1]
+town[:residents].delete(belle)
+town[:castle][:guests]<< belle
 ```
 
 ### Question 3
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,26 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an Entity Relationship Diagram is a graphical representation of data, describing various entities, attributes, and the relationships between them. An ERD is used to model a database and allows us to better understand the scope of our problem and what we are trying to solve in creating an application.
+
+For the above examples, the following relationships might exist:
+
+Gene -> Lamp: one to one
+Gene -> Person: one-to-many
+Person -> Pet might be many-to-many or one-to-many
+
+Gene Attributes:
+name, age, past_masters, wishes, lamp_id(FOREGIN KEY)
+
+Lamp Attributes:
+location, date_lamp_last_rubbed, gene_id(FOREGIN KEY), current_master_id(FOREGIN KEY)
+
+Person Attributes:
+name, age, address
+
+Pet Attributes:
+name, type, age, owner_id(FOREGIN KEY)
+
 ```
 
 ### Question 5
@@ -100,7 +127,22 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a blueprint for how our database will be structured, defining tables associated with objects, and their columns including the name, data type, and any associated constraints.
+
+For example, we can represent the following one-to-many relationship by creating two tables in a schema file and listing their associated columns.
+
+CREATE TABLE people(
+  id SERIAL PRIMARY KEY,
+  name TEXT,
+  age INTEGER,
+);
+
+CREATE TABLE wishes(
+  id SERIAL PRIMARY KEY,
+  wish_action TEXT,
+  wish_date TEXT,
+  people_id INTEGER
+);
 ```
 
 ### Question 6
@@ -125,7 +167,22 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+1.
+  aladdins_lamp = Lamp.create(wishes_remaining: 3)
+  genie1 = Genie.create(name: "Genie1")
+2.
+  genie :  has_one :lamp
+  lamp :   belongs_to :genie
+3.
+  aladdins_lamp.update(wishes_remaining: 1)
+  or
+  aladdins_lamp.wishes_remaining = 1
+  aladdins_lamp.save
+
+4. jafar = Genie.create(name: "Jafar")
+   new_lamp = Lamp.create(wishes_remaining: 3)
+   jafar.genie_owner = new_lamp
+   jafar.save
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +197,30 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+REST is a convention that developers follow to break up a request by the path and method. RESTful route is the method(action) and path(url) sent when a user makes a request, it models the database CRUD(create, read, update, delete) actions
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
+GET '/warriors'
+
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors/edit'
+  *This is a edit route
+
+PUT '/warriors'
+  This is an update/edit route
+
+GET '/warriors/new'
+  This is a new route
+
+POST '/warriors'
+
+DELETE '/warriors/:id'
+
 ```
 
 ### Question 8
@@ -170,5 +241,8 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>Warriors:</h1>
+<% @warriors.each do |warrior|%>
+  <h2><%=warrior.name%></h2>
+<%end%>
 ```
