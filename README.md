@@ -26,7 +26,10 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose (person)
+  person = "young prince"
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
 ```
 
 ### Question 2
@@ -49,7 +52,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town.delete(residents: "Belle")
+town.castle.new(guests: "Belle")
 ```
 
 ### Question 3
@@ -71,7 +75,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +95,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a tool we use to visualize and describe the data relating to the major entities that will exist in our programs.
+A Lamp can have many Genies - One to many
+A Person can have many pets and pet can have more than one owner (married couple or married couple with children) - Many to Many  
 ```
 
 ### Question 5
@@ -100,7 +108,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a collection of logical structures of data, or schema objects. A schema is owned by a database user.
 ```
 
 ### Question 6
@@ -125,7 +133,7 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+# code here Skipping this question. Need assistance.
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +148,34 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+It both connects incoming HTTP requests to the code in your application’s controllers, and helps you generate URLs without having to hard-code them as strings.
 ```
 Your routes:
+GET	       index
+GET	       new
+POST	     create
+GET	       show
+GET	       edit
+PUT	       update
+DELETE	   destroy
 ```
 The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+GET '/warriors'
+  * This is the index route, which will show the list and display all the warriors.
+GET '/warriors/new'
+  * This is the new route, which will return an HTML form for creating a new warrior.
+POST '/warriors'
+  * This is the create route, which will return and HTML form for creating a new warrior and it will also save the warrior to the database.
+GET '/warriors/:id/edit'
+  * This is the edit route, which gives a form to edit but it does not save the changes to the database.
+PUT '/warriors/:id'
+  * This is the update route, which saves any changes to the database.
+DELETE '/warriors/:id'
+  * This is the destroy route, which deletes a specific warrior.
 
-Replace this with your answer
 ```
 
 ### Question 8
@@ -170,5 +196,7 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<% @warrior.each do |warrior| %>
+<p><%= warrior.name %></p>
+<% end %>
 ```
