@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose (x)
+  personX = x.to_s
+  "Would you take this rose and help out an old beggar, " + personX + "?"
+end
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents].delete("Belle")
+town[:castle][:guests].push("Belle")
+
 ```
 
 ### Question 3
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with " + friend
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,8 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a drawing/diagram that establishes relationships in a database between tables... or classes... A useful part of ERD is determining if a relationship is one-to-many (A genie to many people), one-to-one (A genie and its lamp) or many-to-many (Owners table to a pets table, owners can have many pets and likewise a pet can have more than one caretaker)
+
 ```
 
 ### Question 5
@@ -100,7 +109,8 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is responsible for what the variables are in a table, and what data type they will be. You represent a one to many relationship in Active Record by creating ruby class files - a connection file, and model/class files. The model files will either say belongs_to or has_many
+
 ```
 
 ### Question 6
@@ -125,7 +135,17 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+
+specialLamp = Lamp.create(wishes_remaining: 3)
+specialGenie = Genie.create(name: "Genie")
+specialGenie.lamp = specialLamp
+specialGenie.save
+specialLamp.update(wishes_remaining: 1)
+jafar = Genie.create(name: "Jafar")
+baddieLamp = Lamp.create(wishes_remaining: 3)
+jafar.lamp = baddieLamp
+specialLamp.update(wishes_remaining: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
