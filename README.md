@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offer_rose(person)
+ puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offer_rose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents].delete("Belle")
+town[:castle][:guests].push("Belle")
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+    puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,18 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An entity-relationship model describes information in a relationsal database as it relates to other information referenced in that database. The entities listed in this example include Genie, Lamp, Person, and Pet.
+
+Attributes: 
+Genie: id, name, color, length_of_servitude, lamp_id
+Lamp: id, color, num_of_wishes, genie_id
+Person: id, name, caste, pet_id, lamp_id
+Pet: id, name, type, person_id
+
+Examples of Relationships
+Genie to Lamp : 1 to 1
+Person to Lamp : many to 1
+Person to Pet : one to many, although could also be many to many (I never saw the sequels so not sure how Abu and Rajah feel about Jasmine and Aladdin respectively.)
 ```
 
 ### Question 5
@@ -100,7 +118,27 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is used to create the seperate tables within a database. One to many relationships are represented in a database with the presence of a foreign key in a table. 
+
+Note that (foreign key) is used to represent a value that would be a foreign key.
+
+CREATE TABLE people (
+id SERIAL PRIMARY KEY,
+name TEXT,
+caste INTEGER,
+sqft INTEGER,
+pet_id INTEGER (foreign key),
+lamp_id INTEGER
+);
+
+CREATE TABLE wishes (
+id SERIAL PRIMARY KEY,
+wish_statement TEXT,
+wish_status TEXT,
+person_id INTEGER,
+lamp_id INTEGER
+);
+
 ```
 
 ### Question 6
@@ -125,7 +163,21 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+Lamp.create(wishes_remaining: 3)
+Genie.create(name: "Genie")
+
+(assuming tables generated through migration)
+def change
+    add_column :genie_id, :integer
+end
+
+good_genie = Genie.find(1)
+good_lamp = Lamp.find(1)
+good_lamp.update(genie_id: good_genie)
+goodlamp.update(wishes_remaining: 1)
+jafar_genie = Genie.create(name: Jafar)
+jafar_lamp = Lamp.create(wishes_remaining: 3, genie_id: jafar_genie)
+good_lamp.id = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +192,43 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful route is what we get when we combine the VERB and the path to form a route.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
-GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+GET '/warriors/:id' do
+    @warriors = Warrior.all
+    erb :"warriors/index"
+end
 
-Replace this with your answer
+get '.warriors/new' do
+    erb :"warriors/new"
+erb
+
+POST '/warriors' do
+    @warrior = Warrior.create(params[:warrior])
+    redirect("/warriors")
+end
+
+put "/warriors/:id" do
+    @warrior = Warrior.find(params[:id])
+    @warrior.update(params[:warrior])
+    redirect("/warriors/#{@warrior.id}")
+end
+
+PATCH '/warriors/:id' do 
+    @warrior = Warrior.create(params[:warrior])
+    redirect("/warriors")
+end
+
+delete "/warriors/:id" do
+    @warrior = Warrior.find(params[:id])
+    @warrior.destroy
+    redirect to("/warriors")
+end
+
 ```
 
 ### Question 8
@@ -170,5 +249,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |artist| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>"><%= warrior.name %></a>
+    </li>
+  <% end %>
+</ul>
 ```
