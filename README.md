@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+ def offer_rose(person)
+   puts ' Would you take this rose and help out an old beggar, #{person}?'
+   end
+end
+
+def offer_rose(young_prince)
 ```
 
 ### Question 2
@@ -49,7 +54,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town.resident.delete(name: "Belle")
+castle.resident.create(name: "Belle")
 ```
 
 ### Question 3
@@ -71,7 +77,7 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+need to review.
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +95,11 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD's help organize data into tables that are defined by their relationships to other data points.
+ERD models help the user properly build their tables with the proper one to one, one to many or many to many relationships.
+
+One Lamp to One Genie
+One Person has many Pets but Pets often are only related to one Person. This could be Many to Many or one pet has many people looking after it.
 ```
 
 ### Question 5
@@ -100,7 +110,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+The schema is used to organize the data table. A one to many relationship is created by
+placing the foreign id on the article that represents the many. Such as an Author table and Book
+table being connected by an Author ID on the final column of the book table.
 ```
 
 ### Question 6
@@ -125,7 +137,20 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+  #One Genie to One Lamp
+  #sample schema:
+  CREATE TABLE lamps (
+      id Serial PRIMARY KEY,
+      wishes_remaining INTEGER
+);
+  CREATE TABLE genies (
+      id Serial PRIMARY KEY,
+      name TEXT
+)
+  Lamp.new(wishes_remaining: 3 )
+  Genie.new(name:"Genie")
+#incomplete
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +165,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+need to reivew.
 ```
 Your routes:
 ```
@@ -149,7 +174,7 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+need to reivew.
 ```
 
 ### Question 8
@@ -170,5 +195,5 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+need to review.
 ```
