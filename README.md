@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+
+  puts "Would you take this rose and help out
+  an old beggar, #{person}?"
+   end
+   offerRose("young prince")
 ```
 
 ### Question 2
@@ -40,16 +45,21 @@ town = {
     num_rooms: 47,
     residents: "Robby Benson",
     guests: []
-  }
-}
+  {
+    }
+
+
 ```
 
 Using Ruby, remove Belle from the town residents, and
 add her to the list of guests in the castle.
 
 Write your code here:
-```ruby
-# code here
+```
+  town[:residents].delete("Belle")
+
+  town[:castle][:guests].push("Belle")
+
 ```
 
 ### Question 3
@@ -71,7 +81,10 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends = ["Chip Potts", "Cogsworth", "Lumière", "Mrs. Potts"]
+friends.each do |person|
+ puts "Belle is friends with #{person}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -103,7 +116,7 @@ SQL database. If you need an example, you can use: people and wishes
 Your answer:
 ```
 A schema is the representation of a plan or theory in the form of a outline or model.
-We represent 1-many relationships in a example like Orange Tree vs. oranges. An orange tree can grow many oranges. But oranges can only grow on a orange.  
+We represent 1-many relationships in a example like Orange Tree vs. oranges. An orange tree can grow many oranges. But oranges can only grow on a orange tree.  
 
 ```
 
