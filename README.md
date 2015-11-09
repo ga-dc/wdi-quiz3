@@ -26,7 +26,10 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose ( person )
+puts ("would you take this rose and help out an old begger," + person)
+offerRose ("young prince")
+
 ```
 
 ### Question 2
@@ -49,7 +52,10 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents][1]
+town[:residents].delete("Belle")
+town[:castle][:guests].push("Belle")
+town[:castle][:guests]
 ```
 
 ### Question 3
@@ -71,7 +77,10 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+puts "Belle is friends with #{friend}"
+end
+
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +98,23 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is a database design tool that provides graphical representation of database tables, the columns and their relationship. Designing it with clear relationship will help us to structure database and plan it’s functionality.
+
+Genie
+Attributes: genie_id, wishes
+Relationship: One to One with lamp, One to many relationship with person
+
+Lamp
+Attributes: lamp_id, color, genie_id
+Relationship: one to one with Genie_id
+
+Person
+Attributes: person_id, name, genie_id
+Relationship: one to many relationship with genie, one-to-many relationship person
+
+Pet
+Attributes: pet_id, person_id
+Relationship: one_to_one relationship with person.
 ```
 
 ### Question 5
@@ -100,7 +125,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema describes the columns name, data type, any constraint of database. If there is foreign key in the element then it's one-to-many relationship.
+
+For example, we can have person table and wishes table. Person has person_id and wishes could have person_id as foreign key.
 ```
 
 ### Question 6
@@ -125,7 +152,11 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+Genie = lamp.create(wishes_remaining: 3, name: genie)
+lamp.update(wishes_remaing: 1)
+jafar = Genie.create(name: 'Jafar')
+jafar_lamp = lamp.create(wishes_remaining: 3, name: jafar)
+lamp.update(wishes_remaining: nil)
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +171,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+verb and path form a route and RESTful route is these combination.
 ```
 Your routes:
 ```
@@ -149,7 +180,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET 'warriors'
+  * This is the index route, which finds all warriors and displays information about warriors.
+
+GET 'warriors/new'
+  * This is the new route, which creates a new warrior.
+
+POST '/warriors'
+ * In this route, warriors created will be posted in warriors list.
+
+GET '/warriors/:id/edit'
+* This is the route where existing warrior information gets edited.
+
+DELETE "warriors/:id"
+* Here warrior with particular Id gets deleted.
+
+PUT 'warriors/:id'
+* Here warrior information gets updated
 ```
 
 ### Question 8
@@ -170,5 +217,9 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<% @warriors.each do |warrior| %>
+<li>
+  <%= warrior.name %>
+</li>
+<% end %>
 ```
