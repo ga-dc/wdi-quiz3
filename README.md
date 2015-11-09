@@ -54,7 +54,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:castle][:guests] += [town[:residents].slice!(1)]
+# I think there's a better way to do this instead of using the index number, but
+# can't for the life of me remember.
 ```
 
 ### Question 3
@@ -77,6 +79,9 @@ Belle is friends with Mrs. Potts
 Write your code here:
 ```ruby
 # code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -94,7 +99,19 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD stands for Entity Relationship Diagram, which is meant to map out the
+relationships between different entities.  This is important in modeling how
+information about these entities can be implemented in a database.
+
+For the examples listed: a Genie might have attributes: color, age, morality;
+and have a one-to-one relationship with a Lamp (a Genie *belongs* to a Lamp).
+The Lamp itself might also have attributes that describe it as well (material,
+place of origin, etc.) as well as relationships to other entities.
+
+Similarly, a Person might have several self-descriptive attributes: age, gender,
+height, etc.; and be related to several pets in a one-to-many relationship (a
+Person might *have* many Pets, wheras a Pet generally has one owner). Pets, of
+course, could have attributes: type-of-animal, age, gender, color, etc.
 ```
 
 ### Question 5
@@ -105,7 +122,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is essentially a blueprint for constructing a row entry in an SQL
+database. Within the schema, one would assign the many (wishes) to the one (people)
+by giving the wish-row a column for the person's ID.
 ```
 
 ### Question 6
@@ -131,6 +150,15 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+lamp = Lamp.create(wishes_remaining: 3)
+Genie = Lamp.genie.create(name: "Genie")
+lamp.update(wishes_remaining: 1)
+
+Jafar = Genie.create(name: "Jafar")
+Jafar.lamp.create(wishes_remaining: 3)
+
+Genie.update(lamp_id: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -145,16 +173,44 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+convention
+REST is a for how information should be communicated between a browser and a server.
+Seven RESTful routes: INDEX, SHOW, NEW, CREATE, EDIT, UPDATE, DELETE.
 ```
 Your routes:
-```
-The ancestors have provided an example of one route; you do the other six!
+```ruby
+# The ancestors have provided an example of one route; you do the other six!
 
-GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+get '/warriors/:id' do #show
+  @warrior = Warrior.find_by(id: params[:id])
+  erb :"warriors/:id"
+end
 
-Replace this with your answer
+get '/warriors' do #index
+  @warriors = Warrior.all
+  erb :"warriors/index"
+
+get '/warriors/new' do #new
+  erb :"warriors/new"
+end
+
+post 'warriors/new' do #create
+  Warrior.create![params[:warrior]]
+  redirect :"warriors/index"
+end
+
+destroy 'warriors/:id' do #destroy
+  Warrior.find_by(id: params[:id]).destroy!
+end
+
+put 'warriors/:id' #edit
+  @warrior = Warrior.update(params[:warrior])
+end
+
+patch 'warriors/:id' #update
+  @warrior = Warrior.update(params[:warrior])
+end
+
 ```
 
 ### Question 8
@@ -175,5 +231,8 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<% @warriors.each do |warrior| %>
+  <p><a href="/warrior/<%=warrior.id%>"><%= warrior.name %></a></p>
+<% end %>
+
 ```
