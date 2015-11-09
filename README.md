@@ -27,6 +27,9 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offer_rose (person)
+  puts "Would you take this rose and help out an old beggar, #{person}"
+end
 ```
 
 ### Question 2
@@ -50,6 +53,7 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
+town[:castle][:guests] = town[:residents].slice(1)
 ```
 
 ### Question 3
@@ -72,6 +76,9 @@ Belle is friends with Mrs. Potts
 Write your code here:
 ```ruby
 # code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,14 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is Entity Relationship Diagram, a visual tool that describes how different models relate to one another in the database.
+A Genie has one lamp and a lamp has one genie. It is a one-to-one relationship.
+
+A person has many pets, a pet has one person. One-to-many.
+
+Or
+
+a person has many pets, and a pet has many people. Many-to-many relationship.
 ```
 
 ### Question 5
@@ -100,7 +114,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema is the set of attributes in the table for a model/entity. In a one-to-many relationship using the people and wishes example, a person has many wishes, and wishes belong to a person. The wishes table will thus have a foreign key that belongs to the person.  
 ```
 
 ### Question 6
@@ -116,16 +130,30 @@ relationships between the two are set up in Active Record.
 Write code to do the following:
 
 1. Create a lamp with 3 wishes remaining and a genie named 'Genie'
+
 2. Create a relationship between 'Genie' and the lamp.
+<!-- This relationship will go in the model files for each entity.  -->
+
 3. Update the lamp so it only has one wish left.
   * Oh no... Jafar has Aladdin! Thankfully he's wished to become a genie himself!
 4. Create a new Genie named 'Jafar' and put him in a new lamp with 3 wishes left.
 5. Free the good Genie by setting his lamp to `nil`
 
-
 Write your code here:
 ```ruby
 # code here
+lamp = Lamp.create(wishes_remaining: 3)
+genie = Genie.create(name: "Genie")
+class Genie ActiveRecord::Base
+belongs_to:lamp
+end
+class Lamp ActiveRecord::Base
+has_one: genie
+end
+lamp.update(wishes_remaining: 1)
+new_lamp = Lamp.create(wishes_remaining: 3)
+jafar = Genie.create(name: "jafar", lamp_id = new_lamp.id )
+new_lamp.delete
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +168,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful route is is an action used to do a specific task in relation to the models of the application. For instance, open a new page, create something, edit it, update it, and delete it.
 ```
 Your routes:
 ```
@@ -149,7 +177,24 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET /warriors/new
+*Returns an HTML from to create a new warrior
+
+POST /warriors
+* To create a new warrior
+
+GET /warriors
+*Displays all warriors
+
+GET /warriors/:id/edit
+*returns an HTML form to edit a warrior
+
+PUT /warriors/:id
+*updates a warrior
+
+DELETE /warriors/:id
+*destroys a warrior
+
 ```
 
 ### Question 8
@@ -171,4 +216,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
 <!-- code here -->
+<h1>Warriors</h1>
+
+<%@warriors.each do |warrior|%>
+<%=warrior.name%>
+<%end>
+
 ```
