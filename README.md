@@ -27,6 +27,11 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose(person)
+  @person = person
+  puts "Would you take this rose and help out an old beggar, #{@person}?"
+end
+offerRose.young_prince
 ```
 
 ### Question 2
