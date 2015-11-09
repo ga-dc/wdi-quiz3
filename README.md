@@ -26,7 +26,9 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +51,7 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:castle][:guests].push town[:residents].delete 'Belle'
 ```
 
 ### Question 3
@@ -71,7 +73,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +93,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a diagram that shows the relationship between tables in a database and allows us to plan and keep track of our databases' structures. A genie be associated with a lamp but a lamp may not necessarily be associated with a genie. Pets are associated with at least one owner and a person can have more than one pet.
 ```
 
 ### Question 5
@@ -100,7 +104,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is used to describe the columns in a database table. A one-to-many relationship, if so prescribed in a schema for people and wishes, means that a wish belongs to one person but a person can have more than one wish.
 ```
 
 ### Question 6
@@ -125,7 +129,12 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+lamp = Lamp.create(wishes_remaining: 3)
+genie = Genie.create(name: 'Genie')
+genie.update(lamp: lamp)
+lamp.update(wishes_remaining: 1)
+jafar = Genie.create(name: 'Jafar': genie: Lamp.create(wishes_remaining: 3))
+genie.update(lamp: nil)
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +149,14 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route provides a map for HTTP verbs (get, post, patch, put) and controller actions on URLs as follows:
+1. /warriors (index),
+2. /warriors/new,
+3. /warriors (create),
+4. /warriors/:id (show),
+5. /warriors/:id/edit,
+6. /warriors/:id (update),
+7. /warriors/:id (destroy)
 ```
 Your routes:
 ```
@@ -149,7 +165,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * This is the index route, which shows a list of warriors.
+
+GET '/warriors/new'
+  * This is the route for a form to enlist a new warrior.
+
+POST '/warriors'
+  * This is the route to create a newly enlisted warrior.
+
+GET '/warriors/:id/edit'
+  * This is the route for a form to edit a warrior.
+
+PATCH '/warriors/:id'
+  * This is the route to update a warrior.
+
+DELETE '/photos/:id'
+  * This is the route to destroy a warrior.
 ```
 
 ### Question 8
@@ -170,5 +202,7 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul><% @warriors.each do |warrior| %>
+  <li><%= warrior.name %></li>
+  <% end %></ul>
 ```
