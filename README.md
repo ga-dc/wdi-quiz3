@@ -89,7 +89,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is short for entity-relationship diagram. ERD is a data modeling technique that visually depicts an information system's enitities and the relationship between them.
+An example of ERD would be a Genie lives in a lamp. A Genie is trapped in the lamp unless a person releases the genie.
+Another example would be a person owns a pet. A pet is the property and possession of a person. A person can have many pets. But a pet can only have one owner.
 ```
 
 ### Question 5
@@ -100,7 +102,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is the representation of a plan or theory in the form of a outline or model.
+We represent 1-many relationships in a example like Orange Tree vs. oranges. An orange tree can grow many oranges. But oranges can only grow on a orange.  
+
 ```
 
 ### Question 6
@@ -140,7 +144,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful route is
 ```
 Your routes:
 ```
