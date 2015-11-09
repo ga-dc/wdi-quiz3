@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,10 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle = town[:residents][1]
+town[:castle][:guests] << belle
+town[:residents].delete_at(1)
+
 ```
 
 ### Question 3
@@ -71,7 +78,7 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each { |friend| puts "Belle is friends with #{friend}" }
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,11 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD visually describes the relationships between objects in our models. It helps determine structure, hierarchy and inheritance.
+
+Genie & lamp are one to one relationship
+Person has_many pets
+Pet belongs_to Person
 ```
 
 ### Question 5
@@ -100,7 +111,10 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema shows what our models are, what attributes they have and what their relationships are.
+
+people have_many wishes
+wished belong_to people
 ```
 
 ### Question 6
@@ -140,16 +154,33 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route has both an HTTP verb and a URL path. They typically describes the CRUD actions that people usually use in applications.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
-GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+#index - all warriors
+GET '/warriors'
 
-Replace this with your answer
+#new - form for new warrior
+GET '/warriors/new'
+
+#create - submit and create new warrior
+POST '/warriors'
+
+#show - one warrior by ID
+GET '/warriors/:id'
+
+#edit - one warrior by ID
+GET '/warriors/:id/edit'
+
+#update - one warrior by ID
+PUT '/warriors/:id'
+
+#destroy a specific warrior by ID
+DELETE '/warriors/:id'
+
 ```
 
 ### Question 8
@@ -170,5 +201,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+
+<% @warriors.each do |warrior| %>
+  <%= warrior.name %>
+<% end %>
+
+
 ```
