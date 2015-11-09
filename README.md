@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+  puts "Would you take this rose and help out an old beggar, #{person}"
+end
+
+ offerRose(young prince)
 ```
 
 ### Question 2
@@ -49,7 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town.residents.delete("Belle")
+town.castle.guests.push("Belle")
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friends}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,13 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is an entity relationship diagram.  It describes the relationships between tables, which contain data, in a database.  Relationships can be one:one or one:many.
+
+I'm assuming genie and lamp are one db, and pet/person is a separate question.
+
+A genie has one lamp, so one:one relationship (would set this up so genie_id is lamp's foreign key, used to relate genie to lamp).
+
+A person can have more than one pet, so person:pet is one:many relationship (person_id is foreign key, used to relate person to pet.)
 ```
 
 ### Question 5
@@ -100,7 +113,32 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema defines the tables, attributes and relationships of data.  It's used to create a schema file, that in turn creates table or tables in a database.
+
+Simple tables for human/wishes would be
+
+CREATE TABLE wishes (
+  id SERIAL PRIMARY KEY,
+  wish VARCHAR (255),
+  people_id INTEGER
+  );
+
+CREATE TABLE humans (
+  id SERIAL PRIMARY KEY,  
+  name VARCHAR (255),
+  );
+
+One human can have many wishes.  Relationship set up in model files:
+
+filename: wish.rb
+class Wish < ActiveRecord::Base
+  belongs_to :humans
+end
+
+filename: human.rb
+class Human < ActiveRecord::Base
+  has_many :wishes
+end
 ```
 
 ### Question 6
@@ -125,7 +163,14 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+Shaky on this.  Not sure, even after some googling, whether multiple genies are in one lamp, or one:one, etc.  Best tries:
+1. newlamp = Lamp.create(wishes_remaining: 3)
+   newgenie = Genie.create(name: "Genie")
+2. newlamp.update(genie_id: newgenie)
+3. newlamp.update(wishes_remaining: 1)
+4. jafar = Genie.create(name: "Jafar")
+   anothernewlamp = Lamp.create(wishes_remaining: 3)
+5. Lamp.find_by(genie_id: genie).update(wishes_remaining: nil)
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +185,8 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+restful routes combine an action(get, put, destroy, etc.) with a path.  It's a way of passing
+requests and returning info from browser to server and back.   
 ```
 Your routes:
 ```
@@ -149,7 +195,23 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  * Displays all warriors
+
+GET '/warriors/new'
+  * Show new warrior
+
+POST '/warriors'
+  * Form to create new warrior
+
+GET '/warriors/:id/edit'
+  * Edit existing warrior found by id
+
+PUT '/warrirors/:id'
+  * Update existing warrior using existing warrior id
+
+DELETE '/warriors/:id/delete'
+  * Delete warrior identified by id
 ```
 
 ### Question 8
@@ -170,5 +232,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h2>These are all the warriors</h2>
+
+<% @warriors.each do |warrior| %>
+  <p><%= warrior.name %></p>
+<% end %>
+
+
 ```
