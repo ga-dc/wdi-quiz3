@@ -26,7 +26,14 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person) do
+
+@name = name
+
+puts "Would you take this rose and help out an old beggar, #{@name}?"
+end
+
+offerRose("Young Prince")
 ```
 
 ### Question 2
@@ -48,9 +55,8 @@ Using Ruby, remove Belle from the town residents, and
 add her to the list of guests in the castle.
 
 Write your code here:
-```ruby
-# code here
-```
+
+residents.index(1).push
 
 ### Question 3
 
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with "
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,12 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD explains the relationship between entities.
+
+Genie to Lamp 1 of 1 relation
+Person to Genie 1 of many
+person to pet 1 of many
+lamp to person 1 of many
 ```
 
 ### Question 5
@@ -100,7 +113,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema has the definitions of the database
+
+one to many = teacher to students
 ```
 
 ### Question 6
@@ -125,7 +140,8 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+no clue what this is asking to do.
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +156,18 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
-```
+Restful route is a method plus a path
+
 Your routes:
 ```
-The ancestors have provided an example of one route; you do the other six!
+
 
 GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+POST '/warriors'
+PUT '/warriors/:id'
+PATCH '/warriors/:id'
+DELETE '/warriors/:id'
 
-Replace this with your answer
 ```
 
 ### Question 8
@@ -170,5 +188,13 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  </head>
+  <body>
+    <%= yield %> <!-- load whatever template was called here -->
+  </body>
+</html>
 ```
