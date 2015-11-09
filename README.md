@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:residents] = ["Maurice", "Gaston"]
+town[:castle][:guests] = "Belle"
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+   puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD is a graphic representation of relationships between items. Genie - Lamp = 1:1. Person - Pet = many:many (pet could have many owners, ie mom, dad, kids, and a person could have many pets).
 ```
 
 ### Question 5
@@ -100,7 +107,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema contains the data that goes into a database.
 ```
 
 ### Question 6
@@ -139,14 +146,24 @@ Describe to him what a RESTful route is, and list what the seven RESTful routes
 would look like for such an application.
 
 Your description:
-```
+
 Replace this with your answer
-```
+```A RESTful route is an http method with a path for CRUD actions. RESTful methods include new, create, edit, update, destroy, index, show.
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
+
+GET '/warriors/:id/edit'
+
+GET '/warriors/new'
+
+POST '/warriors'
+
+DELETE 'warriors/:id'
+
+PUT '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
 Replace this with your answer
@@ -170,5 +187,9 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li><%= warrior.name %></li>
+  <% end %>
+</ul>
 ```
