@@ -12,4 +12,4 @@ Belle is friends with Chip Potts
 friends.each do |friend|
   puts "Belle is friends with friend"
 end
-friends.each {|friend| puts "Belle is friends with " friend}
+friends.each {|friend| puts "Belle is friends with #{friend}"}

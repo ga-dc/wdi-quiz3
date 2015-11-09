@@ -100,7 +100,14 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+Entity Relationship Diagram (ERD) is a visualization of how data relates in a database. For example one genie can have zero or one lamp and each lamp can have zero or one genie. In addition each person can have zero or multiple genies and pets.
+Genie -- zero or one --> lamp
+lamp -- zero or one --> genie
+pet -- zero or one --> person
+person --zero or multiple --> pets
+person --zero or one --> genie
+genie -- zero or multiple -->people
+
 ```
 
 ### Question 5
@@ -111,7 +118,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema formats the columns of a table and how it relates to other elements. In the case of people and wishes you would say that people one wishes (multiple) by saying that the class Wishes belongs_to people and that the class People has_many wishes
 ```
 
 ### Question 6
