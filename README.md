@@ -27,6 +27,11 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +54,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+  belle = town[:residents][1]
+  town[:castle][:guests].push(belle)
+  town[:residents].delete_at(1)
 ```
 
 ### Question 3
@@ -72,6 +79,9 @@ Belle is friends with Mrs. Potts
 Write your code here:
 ```ruby
 # code here
+ friends.each do |friend|
+  puts 'Bell is friends with #{friend}'
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +99,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+Entity relationship diagram, is a way to describe our database Entity relationships and attributes.
+Genie has one lamp so lamp belongs to genie
+Person has pet so pet has owner, but also it can be many-to-many since a pet can have multiple owners.
 ```
 
 ### Question 5
@@ -100,7 +112,9 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is how are database will store its information, and what attributes those relationships it will have such
+as one-to-many or many-to-many. Using primary and foreign keys we would establish our primary in our Person, and then
+a foreign key to the wish to assign that wish to a person.
 ```
 
 ### Question 6
@@ -126,6 +140,13 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+genie = Genie.create(name: "Genie")
+lamp = Lamp.create(wishes_remaining: 3)
+genie.lamp_id = lamp.id
+lamp.update(wishes_remaining: 1)
+jafar = Genie.create(name: "Jafar")
+jafar.lamps.create(wishes_remaining: 3)
+genie.update(wishes_remaining: nil)
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -147,9 +168,20 @@ Your routes:
 The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+* This is the show route, which finds a warrior by ID, and displays information about that warrior.
+GET '/warriors/
+* This is the index route, which displays all warriors
+delete '/warriors/:id'
+* This is the delete route, which finds a warrior by ID, and poof gone.
+GET '/warriors/:id/edit'
+* This is the edit route, which finds a warrior by ID, and displays form to edit information about that warrior.
+PUT '/warriors/:id'
+* This is the updates route, which finds a warrior by ID, and updates information about that warrior.
+GET '/warriors/new'
+* This is the new route, which creates a form for making new a warrior, and displays information about that warrior.
+POST '/warriors'
+* This is the post route, which generates a warrior after submitted, and displays information about that warrior.
 
-Replace this with your answer
 ```
 
 ### Question 8
@@ -171,4 +203,7 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
 <!-- code here -->
+<% @warriors.each do |warrior|%>
+  <p> <%= warrior.name %> </p>
+<% end %>
 ```
