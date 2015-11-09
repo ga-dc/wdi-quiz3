@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(name)
+  puts "Would you take this rose and help out an old beggar, #{name}?"
+end
+
+offerRose('young prince')
 ```
 
 ### Question 2
@@ -49,7 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+belle = town[:residents][1]
+town[:castle][:guests].push(belle)
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+ friends.each do |friend|
+   puts "Belle is friends with #{friend}"
+ end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,16 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An Entity Relational Diagram is a way for us to model our database entities such
+that we can describe what kind of attributes each entity should have, and its
+relationship with the surrounding entities. It's a way to plan and structure database
+tables in an application. For the four models given, we can probably say that a Lamp
+ has a one to many relationship with a Genie; a Lamp has one Genie inhabiting it at
+  any given time, but multiple Genies may have belonged to that Lamp (at least in
+    the case of Alladin - only one Genie can inhabit a lamp at a time..iirc). A person
+     to pet relationship can go either way. A person can have one pet and that pet belongs
+      to a specific person. A person might also have multiple pets and those pets all
+      belong to same owner; that can be a one to many relationship between person and pet.
 ```
 
 ### Question 5
@@ -100,7 +116,16 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+  Our database may have many individual tables, and each table will have a schema
+  which refers to the attributes it has (and what data types they are), relationships
+  with other tables (i.e. foreign key of another table), as well as any constraints
+   it may contain. It is like a blueprint or a way to describe the individual tables,
+    where as an ERD is like a blueprint for all the tables and how they interact with
+     each over as a whole. In the people and wishes example, we would have two separate
+     database tables (people and wishes). A person may have the attributes (or columns)
+      name (text), age (int), and number_of_wishes (int). The wishes table might have
+       a foreign key which points to the person that owns the wish, and a wished_at_date
+        (date) which would specify when a person wished this particular wish.
 ```
 
 ### Question 6
@@ -125,7 +150,19 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+
+  lamp = Lamp.create(:wishes_remaining 3)
+  genie = Genie.create(:name "Genie")
+
+  genie.lamp = lamp
+  genie.save
+
+  lamp.update(:wishes_remaining 1)
+
+  Genie.create(:name "Jafar", :lamp Lamp.create(:wishes_remaining 3))
+
+  genie.update(:lamp nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +177,37 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A restful route is a combination of an HTTP VERB (e.g. GET, POST, PUT, DELETE) and
+a URL path (e.g. '/mongorians' or '/CityWok'). It's a very clean and dry way of setting
+up a website's different URL endpoints and allows for efficient CRUDing - ways for us
+to create, read (or view), update, and delete resources.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
-GET '/warriors/:id'
+  GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+  DELETE '/warriors/:id'
+  * This is the delete route which finds a warrior by ID, and deletes him from the database.
+
+  GET '/warriors/:id/edit'
+  * This is the edit route which finds a warrior by ID and displays a form to update his attributes.
+
+  PUT '/warriors/:id'
+  * This is the route that updates a warrior after the updated form has been submitted.
+
+  GET '/warriors'
+  * This is the index route, which shows all the warriors.
+
+  GET'/warriors/new'
+  * This is the route to display a form that will allow us to create a new warrior.
+
+  POST '/warriors/'
+  * This is the route that gets submitted after a user fills out the form for a new warrior and hits submit.
+
+
 ```
 
 ### Question 8
@@ -170,5 +228,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+
+<h1>Warriors</h1>
+<% @warriors.each do |warrior| %>
+  <p><%= warrior.name %></p>
+<% end %>
+
 ```
