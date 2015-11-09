@@ -31,7 +31,7 @@ def offerRose(person)
   @person = person
   puts "Would you take this rose and help out an old beggar, #{@person}?"
 end
-offerRose.young_prince
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -47,6 +47,11 @@ town = {
     guests: []
   }
 }
+guests = town[:castle][:guests]
+belle = town[:residents][1]
+guests.push(belle)
+townRes = town[:residents]
+townRes.delete("Belle")
 ```
 
 Using Ruby, remove Belle from the town residents, and
@@ -55,6 +60,8 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
+residents[1]
+castle.residents.new(Belle)
 ```
 
 ### Question 3
