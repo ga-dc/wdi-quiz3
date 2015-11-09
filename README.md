@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(x)
+  puts "Would you take this rose and help out an old begger, #{x}?"
+end
+
+offerRose(young prince)
 ```
 
 ### Question 2
@@ -49,6 +53,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
+town[:residents].delete("Belle")
+town[:castle][:guests].push("Belle")
 # code here
 ```
 
@@ -71,7 +77,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,13 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is a tool that we use to help visualize major data relationships that will exist in our program.
+One genie to one lamp
+one lamp to one person
+one person to many pets
+
+attributes for genie, person, and pet would be name and age
+attributes for lamp would be material type and number of wishes
 ```
 
 ### Question 5
@@ -100,7 +114,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema defines what columns the data tables will have.  We relate a one to many relationship by using a foreign key.
 ```
 
 ### Question 6
@@ -125,7 +139,11 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+INSERT INTO lamp(genie_name, wishes_remaining) VALUES ("Genie", 3);
+
+UPDATE lamp SET wishes_remaining = 1  WHERE wishes_remaining = 3;
+INSERT INTO lamp(genie_name, wishes_remaining) VALUES ("Jafar", 3);
+UPDATE lamp SET wishes_remaining = nil WHERE wishes_remaining = 1;
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +158,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful routes are the methods that our browser uses to get information from the server.  We can use these methods to create, read, update, or delete information.
 ```
 Your routes:
 ```
@@ -148,8 +166,12 @@ The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
-
-Replace this with your answer
+get '/warriors'
+post '/warriors'
+get 'warriors/new'
+get '/warriors/:id/edit'
+put '/warriors/:id'
+delete 'warriors/:id'
 ```
 
 ### Question 8
@@ -170,5 +192,15 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h2>Warriors <a href="/warriors/new">(+)</a></h2>
+
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>">
+        <%= warrior.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
