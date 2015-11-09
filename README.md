@@ -26,7 +26,10 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, person?"
+offerRose "young prince"
+end
 ```
 
 ### Question 2
@@ -48,8 +51,10 @@ Using Ruby, remove Belle from the town residents, and
 add her to the list of guests in the castle.
 
 Write your code here:
-```ruby
-# code here
+belle
+town[:castle][:guests].push town[:residents][1]
+town[:residents].delete_at(1)
+
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+  def friends.each do |befriend|
+    puts 'Belle is friends with #{befriend}'
+  end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -85,11 +92,19 @@ entities (no need to draw an ERD):
 * Genie
 * Lamp
 * Person
-* Pet
-
+* Pets <---- I changed that to pural
+Entity Relationship Diagram.
+This maps out the relationships between tables in the database (ActiveRecord)
 Your answer:
 ```
-Replace this with your answer
+class Genie
+  belongs_to :Lamp
+end
+
+class Person
+  has_many :Pets
+
+
 ```
 
 ### Question 5
@@ -100,7 +115,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+The schema maps out how the how information will be stored into each table.
 ```
 
 ### Question 6
@@ -125,7 +140,14 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+genie = Genie.create(name: "Genie")
+lamp = Lamp.create(wishes_remaining: 3)
+genie.lamp_id = lamp_id
+lamp.update(wishes_remaining: 1)
+jafar = Genie.creat(name: "Jafar")
+jafar.lamp.create(wishes_remaining: 3)
+genie.update(wishes_remaining: nil)
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -134,7 +156,6 @@ Write your code here:
 
 The Chinese Emperor needs an application to help him manage his warriors.
 <!-- LOLZ. YES. -->
-
 Describe to him what a RESTful route is, and list what the seven RESTful routes
 would look like for such an application.
 
@@ -146,10 +167,19 @@ Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
-GET '/warriors/:id'
+GET '/warriors'
+  * This is the index route, which displays all warriors.
+GET '/warriors/new'
+  * This is the new route, which returns an HTML form for creating a new warrior.
+DELETE '/warriors/:id'
+  * This is the destroy route, which deletes specific warrior.
+GET '/warriors/:id/edit'
+  * This is the edit route, which edits a specific warrior.
+GET'/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+PATCH/PUT '/warriors/:id'
+  * This is the update route, which updates a specific warrior.
 
-Replace this with your answer
 ```
 
 ### Question 8
@@ -170,5 +200,7 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+
+  <% @warriors.each do |warrior| %>
+
 ```
