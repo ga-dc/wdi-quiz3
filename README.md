@@ -26,7 +26,11 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose person
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -49,7 +53,7 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:castle][:guests] << town[:residents][1]
 ```
 
 ### Question 3
@@ -71,7 +75,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each |friend|
+puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -87,9 +93,11 @@ entities (no need to draw an ERD):
 * Person
 * Pet
 
-Your answer:
 ```
-Replace this with your answer
+An ERD is a diagram that helps explain the relationship between different kinds of data.
+
+Genie/Lamp = 1-1 relationship. There can be only one genie to one lamp (...as far as I know). To show a 1 to many relationship we should assume a pet only has one 'owner'. In that case, a person can have many pets but each of those pets may answer to only one owner.
+Your answer:
 ```
 
 ### Question 5
@@ -100,7 +108,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema serves the purpose of giving structure to a certain database. The class and its attributes. It will create a table with rows and columns accordingly. For people and wishes there would be a one to many relationship being that one person has many wishes and those wishes belong to one person. The people table would generate a unique id. The wishes would be correspondingly connected with a foreign id for any given wish tied back to the original id of a person.
 ```
 
 ### Question 6
@@ -170,5 +178,14 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>Warriors</h1>
+  <ul>
+    <% @warriors.each do |warrior| %>
+        <li>
+          <a href="/warriors/<%= warrior.id %>">
+            <%= warrior.name %>
+          </a>
+        </li>
+    <% end %>
+  </ul>
 ```
