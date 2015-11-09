@@ -47,11 +47,7 @@ town = {
     guests: []
   }
 }
-guests = town[:castle][:guests]
-belle = town[:residents][1]
-guests.push(belle)
-townRes = town[:residents]
-townRes.delete("Belle")
+
 ```
 
 Using Ruby, remove Belle from the town residents, and
@@ -60,8 +56,11 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
-residents[1]
-castle.residents.new(Belle)
+guests = town[:castle][:guests]
+belle = town[:residents][1]
+guests.push(belle)
+townRes = town[:residents]
+townRes.delete("Belle")
 ```
 
 ### Question 3
@@ -83,7 +82,7 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each {|friend| puts "Belle is friends with #{friend}"}
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
