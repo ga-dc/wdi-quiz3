@@ -26,7 +26,13 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person='Jimmy')
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
+
+def offerRose(person='young prince')
+  puts "Would you take this rose and help out a #{person}?"
+end
 ```
 
 ### Question 2
@@ -49,7 +55,17 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town = {
+  residents: ["Maurice", "Belle", "Gaston"],
+  castle: {
+    num_rooms: 47,
+    residents: "Robby Benson",
+    guests: []
+  }
+}
+
+residents_castle[:key2] = residents.delete(:key1)
+
 ```
 
 ### Question 3
@@ -71,15 +87,18 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+words = %w[Chip Potts Cogsworth Lumière Mrs. Potts]
+str = " "
+words.each { |word| str += "#{word} " }
+puts "Belle is friends with" word.each
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
 
 ### Question 4
 
-Describe what an ERD is, and why we create them for applications. Also give an
-example what the attributes and relationships might be for the following
+Describe what an ERD is, and why we create them for applications. Also, give an
+example of what the attributes and relationships might be for the following
 entities (no need to draw an ERD):
 <!-- Maybe clarify whether they're meant to give relationships between all four entities or... -->
 * Genie
@@ -89,7 +108,12 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD (Entity Relationship Diagram) is a great tool to use when think about different relationship between data in a data base. Relationships can
+exist in many forms including: one-to-many, one-to-one, or many-to-one.
+
+The example above(Genie, Lamp; Person, Pet) is a perfect example of  relationships: A genie may come from one lamp; a lamp may belong to many
+people; a person may have on or many pets -- usually the pet only has one owner. The owner could only have one pet, which would make that a
+one-to-one relationship since pets usually only have one owner.
 ```
 
 ### Question 5
@@ -125,7 +149,36 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+class Lamp {
+  @wishes_remaining 3
+}
+end
+
+class Genie{
+  @name 'Genie'
+}
+end
+
+class Lamp < ActiveRecord::Base
+end
+
+class Genie < ActiveRecord::Base
+end
+
+class Lamp {
+  @wishes_remaining 1
+}
+
+class Genie.new {
+  @name = Jafar
+  @wishes_remaining 3
+}
+end
+
+class Genie {
+  Lamp = nil
+}
+
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,16 +193,25 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful uses different HTTP methods to represent
+different actions. In short, Emperor, it gives you more control. If you'd like to move
+one or many soldiers at a time,  or find an individual soldier's id, you can do so.
 ```
 Your routes:
 ```
 The ancestors have provided an example of one route; you do the other six!
 
 GET '/warriors/:id'
-  * This is the show route, which finds a warrior by ID, and displays information about that warrior.
+  * This is the show route, which finds a warrior by ID, and displays information about
+  that warrior.
 
-Replace this with your answer
+1. '/warriors/'
+2. '/warriors/news'
+3. '/warriors'
+4. '/warriors/:id/edit'
+5. 'warriros/:id'
+6.  'warriros/:id'
+
 ```
 
 ### Question 8
@@ -170,5 +232,15 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h2>Warriors <a href="/warriors/new">(+)</a></h2>
+
+<ul>
+  <% @warrior.each do |warriors| %>
+    <li>
+      <a href="/warrior/<%= warrior.id %>">
+        <%= warrior.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
