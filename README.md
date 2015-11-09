@@ -26,7 +26,12 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose(person)
+  puts "Would you take this rose and help out
+  an old beggar," person "?"
+end
+
+offerRose(YoungPrince)
 ```
 
 ### Question 2
@@ -49,7 +54,7 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+guests.push residents.delete_at(1)
 ```
 
 ### Question 3
@@ -71,7 +76,10 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friendsofBelle = friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
+
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +97,9 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+Entity Relationship Diagram is a tool we use to visualize and describe the data relating to the major entities that will exist in out programs. ERD's display the entitys and how they relate to each other: one to one, one to many, many to many and include attributes with in them.
+
+one lamp for each genie each person gets three wishes per genie person(s) own pets(s)
 ```
 
 ### Question 5
@@ -100,7 +110,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a set up of how data should be laid out in a database. It lists the attributes and what kind of data they are. a one to many relatioship is captured by creating a column of ids... the wishes table would have a people_ID which would list the id number of the people who made that wish.
 ```
 
 ### Question 6
@@ -140,7 +150,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+Browsers have different "ways of talking" to servers. These are called methods. REST, or REpresentational State Transfer, is a convention for what these methods should be to standardize all the communication between browsers and servers.
 ```
 Your routes:
 ```
@@ -149,7 +159,18 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+POST 'warriors/:id'
+* this it the route by which warriors are added
+
+put 'warriors/:id'
+*updates whole profile to new warrior
+*
+PATCH 'warriors'
+*updates just part of the warrirors profile
+
+DELETE 'warriors/:id'
+* this is the route by which warriors are deleted
+
 ```
 
 ### Question 8
@@ -170,5 +191,15 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h2>Warriors</h2>
+
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>">
+        <%= warrior.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
