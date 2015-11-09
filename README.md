@@ -102,7 +102,7 @@ Your answer:
 ```
 ERD stands for Entity Relationship Diagram. ERD's exist to show relationships between entities and attributes within a system or application. We use them as a tool to understand how our data is interacting within the program.
 
-Disclaimer: I've never seen Aladdin so I am not  sure about the relationships between the four examples, but here's a shot. And i have no idea how "pets" fits in?
+Disclaimer: I've never seen Aladdin so I am not  sure about the relationships between the four examples, but here's a shot.
 
 Genie [attributes: nationality, age, gender, etc.]
   [relationships: lamp - one to one, person - one to many]
@@ -112,7 +112,6 @@ Person [attributes: age, gender, nationality, etc.]
   [relationships: genie - one to one, lamp: many to one]
 Pets [attributes: breed, age, name]
   [relationships: genies - one to one, person: one to one]
-
 
 ```
 
@@ -124,9 +123,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-
-
-
+In programming, we use tables to store data we want to use in a program. Each table has a schema which defines the categories of the columns and rows and also defines the rules for the table (which input is allow, max word count, etc.)
 ```
 
 ### Question 6
@@ -151,7 +148,13 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+1) lamp = Lamp.create(wishes_remaining: 3)
+2)?
+3) lamp.updates(wishes_remaining: 1)
+4 jafar = Genie.create(name: "Jafar")
+  lamp2 = Lamp.create(wishes_remaining: 3)
+  
+5)lamp = nil
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -166,7 +169,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful route is the way a user makes requests and interacts with the database performing CRUD (create, remove, update deleted) actions in real time in an application.
 ```
 Your routes:
 ```
@@ -175,7 +178,21 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+*index route which lists all warriors
+
+POST '/warriors'
+*new route which allows user input to create a new warrior
+
+GET 'warriors/:id/edit'
+*allows user to change information (as defined in schema) for a particular warrior by id number
+
+PUT 'warriors/:id/edit'
+*update route which actually updates a specific warrior > kind of goes along with ^^
+
+DELETE 'warriors/:id'
+*destroy route which removed warrior (based on ID) from database
+
 ```
 
 ### Question 8
@@ -196,5 +213,8 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<h1>Warriors!</h1>
+<%@warriors.each do |warrior| %>
+  <h2><%=warrior.name%></%=warrior.name%></h2>
+<%end%>
 ```
