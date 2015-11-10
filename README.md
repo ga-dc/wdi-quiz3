@@ -27,6 +27,12 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose person do
+  return "would you take this rose and help out an old beggar,#{person}".
+end
+
+offerRose ("young prince");
+
 ```
 
 ### Question 2
@@ -49,7 +55,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:resident][1].delete;
+castle.residents.push("Belle");
 ```
 
 ### Question 3
@@ -68,10 +75,10 @@ Belle is friends with Cogsworth
 Belle is friends with Lumière
 Belle is friends with Mrs. Potts
 ```
-
-Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+puts "Belle is friends with #{friend}."
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is an entity relational diagram that is used to show relationship among the data in the database. It helps to simplify and visualize the complex relatiosnhip among the data.
 ```
 
 ### Question 5
@@ -100,7 +107,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a table created to manage data attributes, assign unique id, link other data and set restrictions on data values/input.
 ```
 
 ### Question 6
@@ -125,7 +132,7 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+# I don't understand the question
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +147,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A restrful route is a conventional method for interracting with the database of the soldier information.
 ```
 Your routes:
 ```
@@ -149,7 +156,25 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+ Displays list of all the warriors
+
+GET '/warriors/new'
+Return a form to create a new soldier profile
+
+GET '/warriors/:id/edit'
+Return a form to update a specific soldier information
+
+PUT '/warriors/:id'
+Update a specific warrior information
+
+POST '/warriors'
+Create new warrior profile
+
+
+DELETE '/warriors/:id'
+Delete a specific warrior information
+
 ```
 
 ### Question 8
@@ -170,5 +195,10 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
+<% @warriors.each do |warrior| %>
+<ul>
+<li><%=warrior%></li>
+</ul>
+<%end%>
 <!-- code here -->
 ```
