@@ -27,6 +27,12 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose person do
+  return "would you take this rose and help out an old beggar,#{person}".
+end
+
+offerRose ("young prince");
+
 ```
 
 ### Question 2
@@ -49,7 +55,8 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town[:resident][1].delete;
+castle.residents.push("Belle");
 ```
 
 ### Question 3
@@ -68,10 +75,10 @@ Belle is friends with Cogsworth
 Belle is friends with Lumière
 Belle is friends with Mrs. Potts
 ```
-
-Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+puts "Belle is friends with #{friend}."
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +96,7 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+ERD is an entity relational diagram that is used to show relationship among the data in the database. It helps to simplify and visualize the complex relatiosnhip among the data.
 ```
 
 ### Question 5
@@ -100,7 +107,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema is a table created to manage data attributes, assign unique id, link other data and set restrictions on data values/input.
 ```
 
 ### Question 6
