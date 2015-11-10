@@ -163,7 +163,7 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # 1
-# Using the bang symbol will cause .create to throw an error if our genie or lamp do not pass validations.
+# Using the bang symbol will cause .create to throw an error if our genie or lamp does not save successfully.
 lamp = Lamp.create!( wishes_remaining: 3 )
 genie = Genie.create!( name: "Genie" )
 
