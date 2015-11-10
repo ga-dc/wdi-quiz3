@@ -27,6 +27,11 @@ Demonstrate calling the method with an argument of "young prince".
 Write your code here:
 ```ruby
 # code here
+def offerRose(person)
+  @person = person
+  puts "Would you take this rose and help out an old beggar, #{@person}?"
+end
+offerRose("young prince")
 ```
 
 ### Question 2
@@ -42,6 +47,7 @@ town = {
     guests: []
   }
 }
+
 ```
 
 Using Ruby, remove Belle from the town residents, and
@@ -50,6 +56,11 @@ add her to the list of guests in the castle.
 Write your code here:
 ```ruby
 # code here
+guests = town[:castle][:guests]
+belle = town[:residents][1]
+guests.push(belle)
+townRes = town[:residents]
+townRes.delete("Belle")
 ```
 
 ### Question 3
@@ -71,7 +82,7 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each {|friend| puts "Belle is friends with #{friend}"}
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +100,14 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+Entity Relationship Diagram (ERD) is a visualization of how data relates in a database. For example one genie can have zero or one lamp and each lamp can have zero or one genie. In addition each person can have zero or multiple genies and pets.
+Genie -- zero or one --> lamp
+lamp -- zero or one --> genie
+pet -- zero or one --> person
+person --zero or multiple --> pets
+person --zero or one --> genie
+genie -- zero or multiple -->people
+
 ```
 
 ### Question 5
@@ -100,7 +118,7 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+A schema formats the columns of a table and how it relates to other elements. In the case of people and wishes you would say that people one wishes (multiple) by saying that the class Wishes belongs_to people and that the class People has_many wishes
 ```
 
 ### Question 6
@@ -126,6 +144,27 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+1.
+INSERT INTO lamps(wishes_remaining) VALUES (3);
+INSERT INTO genies(name) VALUES ('Genie');
+
+2.
+class Genie < ActiveRecord::Base
+  has_many :lamps
+end
+
+class Lamp < ActiveRecord::Base
+  belongs_to :genie
+end
+
+3.
+UPDATE lamps SET wishes_remaining = 1 WHERE wishes_remaining = 3
+
+4.
+INSERT INTO genie(name) VALUES ('Jafar') WHERE wishes_remaining = 3
+
+5.
+UPDATE genie SET lamps = nil WHERE name = "Genie"
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +179,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+REST is the standardized method that servers and browsers interact.
 ```
 Your routes:
 ```
@@ -149,7 +188,25 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  *Displays information about all the warriors
+
+GET 'warriors/new'
+  *Returns a form to create a new warrior
+
+POST '/warriors'
+  * Creates a new warrior
+
+PUT '/warriors/:id'
+  * Finds a warrior and rewrites all of the warrior's information
+
+GET '/warriors/:id/edit'
+  * Finds a warrior and rewrites part or all of the warrior's information
+
+DELETE '/warriors/:id'
+  * Finds a warrior and deletes their information
+
+
 ```
 
 ### Question 8
@@ -170,5 +227,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <%= warrior.name %>
+    </li>
+  <% end %>
+</ul>    
 ```
