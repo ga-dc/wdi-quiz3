@@ -26,7 +26,9 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offer_rose( person )
+  puts "Would you take this rose and help out an old beggar, #{person}?"
+end
 ```
 
 ### Question 2
@@ -49,7 +51,13 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+# one line solution
+town[:castle][:guests] << town[:residents].delete( "Belle" )
+
+# multi-line solution
+belle = town[:residents][1]
+town[:residents].delete( belle )
+town[:castle][:guests] << belle
 ```
 
 ### Question 3
@@ -71,7 +79,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -89,7 +99,19 @@ entities (no need to draw an ERD):
 
 Your answer:
 ```
-Replace this with your answer
+An ERD (Entity Relationship Diagram) is a graphical representation of data that portrays the attributes of different entities and the relationships between them. Each entity in an ERD represents a database table.
+
+Relationships
+* Genie, Lamp: one-to-one
+* Person, Genie: one-to-one
+* Person, Pet: one-to-many
+
+Attributes
+* Genie: name, wishes, person_id
+* Lamp: location, genie_id, person_id
+* Person: name, age, address
+* Pet: name, age, species, person_id
+
 ```
 
 ### Question 5
@@ -99,8 +121,24 @@ SQL database. If you need an example, you can use: people and wishes
 (one-to-many).
 
 Your answer:
+
 ```
-Replace this with your answer
+A schema defines the columns that comprise the tables in our database. Each attribute in a schema (e.g, name TEXT) corresponds to a column in a table.
+
+We represent one-to-many relationships in schema using foreign keys. The table/class that there are "many" of has a column for this foreign key.
+
+CREATE TABLE people(
+  id SERIAL PRIMARY KEY,
+  name TEXT,
+  age INTEGER,
+);
+
+CREATE TABLE wishes(
+  id SERIAL PRIMARY KEY,
+  wish_action TEXT,
+  wish_date TEXT,
+  people_id INTEGER
+);
 ```
 
 ### Question 6
@@ -110,7 +148,6 @@ Replace this with your answer
 2. You have a working connection to the database for ActiveRecord.
 3. You have active record models defined for `Genie` and `Lamp`, and the
 relationships between the two are set up in Active Record.
-<!-- Do we want to specifiy what kind of relationship they have, in case some students aren't familiar with the mythology...? -->
 4. Lamps have one property, `wishes_remaining`, and genies have one property, `name`.
 
 Write code to do the following:
@@ -125,7 +162,28 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+# 1
+# Using the bang symbol will cause .create to throw an error if our genie or lamp do not pass validations.
+lamp = Lamp.create!( wishes_remaining: 3 )
+genie = Genie.create!( name: "Genie" )
+
+# 2
+lamp.genie = genie
+lamp.save
+
+# 3
+lamp.update!( wishes_remaining: 1 )
+
+# 4
+jafar = Genie.create!( name: "Jafar" )
+jafars_lamp = Lamp.create!( wishes_remaining: 3 )
+jafars_lamp.genie = jafar
+jafars_lamp.save
+
+# 5
+genie.lamp = nil
+  # or
+genie.lamp.destroy
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -133,23 +191,36 @@ Write your code here:
 ### Question 7
 
 The Chinese Emperor needs an application to help him manage his warriors.
-<!-- LOLZ. YES. -->
 
 Describe to him what a RESTful route is, and list what the seven RESTful routes
 would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+A RESTful (REpresentational State Transfer) route is a method and path combination that corresponds to a CRUD function (create, update, read or destroy). REST is a convention that most developers follow so that communication between browsers and servers is standardized.
 ```
 Your routes:
 ```
-The ancestors have provided an example of one route; you do the other six!
+GET '/warriors'
+  * Index
+
+GET '/warriors/new'
+  * New warrior form
+
+POST '/warriors'
+  * Create warrior
 
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors/:id/edit'
+  * Edit warrior form
+
+PATCH '/warriors/:id'
+  * Update warrior
+
+DELETE '/warriors/:id'
+  * Delete warrior
 ```
 
 ### Question 8
@@ -169,6 +240,11 @@ end
 Write what an example ERB file (aka view) might look like to list all the warriors:
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
+
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior|%>
+    <li><%=warrior.name%></li>
+  <%end%>
+</ul>
 ```
