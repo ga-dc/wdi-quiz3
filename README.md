@@ -144,6 +144,27 @@ Write code to do the following:
 Write your code here:
 ```ruby
 # code here
+1.
+INSERT INTO lamps(wishes_remaining) VALUES (3);
+INSERT INTO genies(name) VALUES ('Genie');
+
+2.
+class Genie < ActiveRecord::Base
+  has_many :lamps
+end
+
+class Lamp < ActiveRecord::Base
+  belongs_to :genie
+end
+
+3.
+UPDATE lamps SET wishes_remaining = 1 WHERE wishes_remaining = 3
+
+4.
+INSERT INTO genie(name) VALUES ('Jafar') WHERE wishes_remaining = 3
+
+5.
+UPDATE genie SET lamps = nil WHERE name = "Genie"
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -158,7 +179,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+REST is the standardized method that servers and browsers interact.
 ```
 Your routes:
 ```
@@ -167,7 +188,25 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+GET '/warriors'
+  *Displays information about all the warriors
+
+GET 'warriors/new'
+  *Returns a form to create a new warrior
+
+POST '/warriors'
+  * Creates a new warrior
+
+PUT '/warriors/:id'
+  * Finds a warrior and rewrites all of the warrior's information
+
+GET '/warriors/:id/edit'
+  * Finds a warrior and rewrites part or all of the warrior's information
+
+DELETE '/warriors/:id'
+  * Finds a warrior and deletes their information
+
+
 ```
 
 ### Question 8
@@ -188,5 +227,11 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <%= warrior.name %>
+    </li>
+  <% end %>
+</ul>    
 ```
