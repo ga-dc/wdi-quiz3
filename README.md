@@ -1,5 +1,6 @@
 # Quiz #3
 
+Need to complete 4 and 6.
 ## Instructions
 
 1. Fork this repo
@@ -26,7 +27,9 @@ Demonstrate calling the method with an argument of "young prince".
 
 Write your code here:
 ```ruby
-# code here
+def offerRose
+  @person = person
+  puts "would you take this rose and help out an old beggar" + {@person}
 ```
 
 ### Question 2
@@ -49,7 +52,9 @@ add her to the list of guests in the castle.
 
 Write your code here:
 ```ruby
-# code here
+town.[:castle][:guests] << town[:residents].delete_at(1)
+
+
 ```
 
 ### Question 3
@@ -71,7 +76,9 @@ Belle is friends with Mrs. Potts
 
 Write your code here:
 ```ruby
-# code here
+friends.each do |friend|
+  puts "Belle is friends with #{friend}"
+end
 ```
 
 ## SQL, Databases, and ActiveRecord (meets Aladdin)
@@ -82,14 +89,13 @@ Describe what an ERD is, and why we create them for applications. Also give an
 example what the attributes and relationships might be for the following
 entities (no need to draw an ERD):
 <!-- Maybe clarify whether they're meant to give relationships between all four entities or... -->
-* Genie
-* Lamp
-* Person
-* Pet
-
+* Genie:
+* Lamp:
+* Pet: 
+* Person:
 Your answer:
 ```
-Replace this with your answer
+ERD is an entity relational diagram. Used to relate entities and attributes to table and column data to visually show the relationships between that information to be used in the database.
 ```
 
 ### Question 5
@@ -100,7 +106,16 @@ SQL database. If you need an example, you can use: people and wishes
 
 Your answer:
 ```
-Replace this with your answer
+Schema is used to provide layout of the table and data used.
+class People
+  has_many :wishes
+end
+
+class Wish
+  belongs_to :person
+end
+
+
 ```
 
 ### Question 6
@@ -125,7 +140,7 @@ Write code to do the following:
 
 Write your code here:
 ```ruby
-# code here
+Lamp
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -140,7 +155,7 @@ would look like for such an application.
 
 Your description:
 ```
-Replace this with your answer
+RESTful route describes the default routes that the server responds and renders based on user navigation.
 ```
 Your routes:
 ```
@@ -149,7 +164,12 @@ The ancestors have provided an example of one route; you do the other six!
 GET '/warriors/:id'
   * This is the show route, which finds a warrior by ID, and displays information about that warrior.
 
-Replace this with your answer
+get '/warriors' => 'warriors#index'
+get '/warriors/new' => 'warriors#new'
+post '/warriors' => 'warriors#create'
+get '/warriors/:id/edit' => 'warriors#edit'
+put '/warriors/:id' => 'warriors#update'
+delete '/warriors/:id' => 'warriors#destroy'
 ```
 
 ### Question 8
@@ -170,5 +190,13 @@ Write what an example ERB file (aka view) might look like to list all the warrio
 
 Write your code here (**NOTE: syntax highlighting doesn't work for ERB in markdown files, so ignore the colors!**):
 ```html
-<!-- code here -->
+<ul>
+  <% @warriors.each do |warrior| %>
+    <li>
+      <a href="/warriors/<%= warrior.id %>">
+        <%= warrior.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
 ```
