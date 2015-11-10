@@ -174,6 +174,7 @@ lamp.save
 lamp.update!( wishes_remaining: 1 )
 
 # 4
+# Using the bang symbol will cause .create to throw an error if our genie does not pass validations.
 jafar = Genie.create!( name: "Jafar" )
 jafars_lamp = Lamp.create!( wishes_remaining: 3 )
 jafars_lamp.genie = jafar
@@ -181,6 +182,8 @@ jafars_lamp.save
 
 # 5
 genie.lamp = nil
+  # or
+genie.lamp.destroy
 ```
 
 ## Sinatra / REST (meets Mulan)
@@ -194,7 +197,7 @@ would look like for such an application.
 
 Your description:
 ```
-A RESTful (REpresentational State Transfer) route is a method and path combination that corresponds to a CRUD function (create, update, read or destroy).
+A RESTful (REpresentational State Transfer) route is a method and path combination that corresponds to a CRUD function (create, update, read or destroy). REST is a convention that most developers follow so that communication between browsers and servers is standardized.
 ```
 Your routes:
 ```
